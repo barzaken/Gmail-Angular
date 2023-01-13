@@ -1,0 +1,14 @@
+<section class="card-grid">
+    <div class="email-header">
+        <input type="checkbox"/>
+        <input type="checkbox"/>
+        <input type="checkbox"/>
+    </div>
+    <item-preview *ngFor="let item of items" [item]="item">
+        <section>
+            <input type="checkbox"/>
+            <button (click)="removeItem(item._id)">x</button>
+            <button (click)="editItem(item._id)">Edit</button>
+        </section>
+    </item-preview>
+</section>

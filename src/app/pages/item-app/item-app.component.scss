@@ -1,0 +1,19 @@
+:host{
+  grid-area: main;
+}
+.item-app-container {
+  height: 100%;
+  display: flex;
+  .email-list{
+    flex: 1;
+  }
+  // display: grid;
+}
+
+.error-msg {
+  background-color: rgb(245, 206, 214);
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  right: 10px;
+}

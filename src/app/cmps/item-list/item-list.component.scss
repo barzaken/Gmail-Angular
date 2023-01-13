@@ -1,0 +1,10 @@
+.card-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    // max
+    .email-header {
+        display: flex;
+        gap: 30px;
+    }
+}

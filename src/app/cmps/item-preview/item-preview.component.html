@@ -1,0 +1,14 @@
+<section class="item-preview">
+    <div class="email-actions">
+        <ng-content></ng-content>
+    </div>
+    <h3>{{item?.from}}</h3>
+    <div class="email-info">
+        <h4>{{item?.subject}}</h4>
+        <p>{{item?.body}}</p>
+    </div>
+    <p>{{item?.sentAt}}</p>
+    <!-- <hr /> -->
+    <!-- Cannot put class on ng-content ): -->
+
+</section>
