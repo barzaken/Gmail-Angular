@@ -2,12 +2,12 @@
   grid-area: main;
 }
 .item-app-container {
-  height: 100%;
   display: flex;
+  overflow-y: hidden;
   .email-list{
     flex: 1;
+    overflow-y: hidden;
   }
-  // display: grid;
 }
 
 .error-msg {

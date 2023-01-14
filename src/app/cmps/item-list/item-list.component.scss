@@ -1,10 +1,32 @@
+:host{
+    overflow-y: hidden;
+    // max-height: 100%;
+}
 .card-grid {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    // max
+    padding: 14px;
+    height:  99%;
     .email-header {
         display: flex;
-        gap: 30px;
+        align-items: center;
+        gap: 15px;
+        .icon{
+            font-size: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+    }
+    section.actions{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        .star-icon{
+            color: #DDDEDE;
+        }
+    }
+    .item-preview{
+        overflow-y: scroll;
     }
 }

@@ -4,9 +4,9 @@
         <p *ngIf="isLoading$ | async">⏱ Loading...</p>
         <item-list (removed)="removeItem($event)" (edited)="editItem($event)" [items]="items$ | async">
         </item-list>
-        <button (click)="addingNew = !addingNew">Add Item...</button>
+        <!-- <button (click)="addingNew = !addingNew">Add Item...</button>
         <section *ngIf="addingNew || (item$ | async)">
             <item-edit (saved)="addingNew=false"></item-edit>
-        </section>
+        </section> -->
     </div>
 </main>

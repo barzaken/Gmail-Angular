@@ -1,14 +1,20 @@
 <section class="card-grid">
     <div class="email-header">
         <input type="checkbox"/>
-        <input type="checkbox"/>
-        <input type="checkbox"/>
+        <mat-icon class="icon">rotate_right</mat-icon>
+        <mat-icon class="icon">more_vert</mat-icon>
+
+        <!-- <input type="checkbox"/> -->
+        <!-- <input type="checkbox"/> -->
     </div>
-    <item-preview *ngFor="let item of items" [item]="item">
-        <section>
-            <input type="checkbox"/>
-            <button (click)="removeItem(item._id)">x</button>
-            <button (click)="editItem(item._id)">Edit</button>
-        </section>
-    </item-preview>
+    <div class="item-preview">
+        <item-preview *ngFor="let item of items" [item]="item">
+            <section class="actions">
+                <input type="checkbox"/>
+                <mat-icon class="star-icon">star_border</mat-icon>
+                <!-- <button (click)="removeItem(item._id)">x</button> -->
+                <!-- <button (click)="editItem(item._id)">Edit</button> -->
+            </section>
+        </item-preview>
+    </div>
 </section>
