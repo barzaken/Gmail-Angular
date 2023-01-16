@@ -4,6 +4,7 @@ import { Item } from 'src/app/models/item';
 export const SET_LOADING = '[item] loading';
 export const SET_ERROR = '[item] error';
 export const LOAD_ITEMS = '[item]s load';
+export const SET_FILTER = '[item] filterBy';
 export const LOAD_ITEM = '[item] load';
 export const LOADED_ITEM = '[item] loaded';
 export const LOADED_ITEMS = '[item]s loaded';
@@ -13,11 +14,15 @@ export const SAVE_ITEM = '[item] saved';
 export const ADDED_ITEM = '[item] added';
 export const UPDATED_ITEM = '[item] updated';
 
-export type ItemAction = LoadItems | LoadItem | RemoveItem | SaveItem
+export type ItemAction = LoadItems | LoadItem | RemoveItem | SaveItem | SetFilter
 
 export class LoadItems implements Action {
   readonly type = LOAD_ITEMS;
   constructor(public filterBy: string = '') {}
+}
+export class SetFilter implements Action {
+  readonly type = SET_FILTER;
+  constructor(public filterBy: object = {}) {}
 }
 export class LoadItem implements Action {
   readonly type = LOAD_ITEM;

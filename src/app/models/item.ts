@@ -9,7 +9,7 @@ export interface Item {
   isRead: boolean,
   isStar: boolean,
   isDraft: boolean,
-  removedAt?: any,
+  removedAt?: number | null,
   sentAt: number,
   from: string,
   to: string

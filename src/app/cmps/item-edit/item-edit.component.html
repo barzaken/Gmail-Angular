@@ -1,9 +1,20 @@
 <section class="item-edit">
-    <h2>Item {{itemEditState}}</h2>
+    <div class="email-header">
+        <span>{{itemEditState}} Email</span>
+        <button (click)="this.close.emit()">x</button>
+    </div>
     <form (submit)="$event.preventDefault();saveItem()">
-        <input type="text" name="txt" [(ngModel)]="item.subject" placeholder="Item name" />
-        <button>{{itemEditState}}</button>
+        <div class="email-info">
+            <input type="text" name="to" [(ngModel)]="item.to" placeholder="To" />
+            <input type="text" name="subject" [(ngModel)]="item.subject" placeholder="Subject" />
+        </div>
+        <hr/>
+        <div class="email-body">
+            <textarea name="body" [(ngModel)]="item.body"></textarea>
+        </div>
+        <div class="email-actions">
+            <button>{{itemEditState}}</button>
+        </div>
     </form>
-    <hr/>
-    <pre>{{item | json}}</pre>
 </section>
+<!-- <pre>{{item | json}}</pre> -->

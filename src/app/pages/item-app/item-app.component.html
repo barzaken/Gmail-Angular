@@ -1,12 +1,12 @@
 <main class="item-app-container">
-<side-bar></side-bar>
-    <div class="email-list">
+<side-bar [filterBy]="filterBy$ | async" (filter)="setFilter($event)" (toggle)="addingNew = !addingNew"></side-bar>
+    <!-- <div class="email-list">
         <p *ngIf="isLoading$ | async">⏱ Loading...</p>
-        <item-list (removed)="removeItem($event)" (edited)="editItem($event)" [items]="items$ | async">
+        <item-list (toggledStar)="toggleStar($event)" (toggledRead)="toggleRead($event)" (archived)="archiveItem($event)" (deleted)="deleteItem($event)" (edited)="editItem($event)"[items]="items$ | async">
         </item-list>
-        <!-- <button (click)="addingNew = !addingNew">Add Item...</button>
-        <section *ngIf="addingNew || (item$ | async)">
-            <item-edit (saved)="addingNew=false"></item-edit>
-        </section> -->
-    </div>
+    </div> -->
+    <router-outlet></router-outlet>
+    <section *ngIf="addingNew || (item$ | async)">
+        <item-edit (close)="addingNew =false" (saved)="addingNew=false"></item-edit>
+    </section>
 </main>

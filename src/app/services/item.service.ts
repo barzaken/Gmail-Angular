@@ -28,7 +28,7 @@ export class ItemService {
     }
   }
   query(filterBy = ''): Observable<Item[]> {
-    
+    console.log('from service',filterBy);
     this.store.dispatch(new LoadingItems());
     console.log('ItemService: Return Items ===> effect');
     return from(storageService.query(ENTITY) as Promise<Item[]>)
@@ -36,7 +36,7 @@ export class ItemService {
   }
 
   getById(itemId: string): Observable<Item> {
-    console.log('ItemService: Return Item ===> effect');
+    console.log('ItemService: Return!!!!!!!!!!!!!!! Item ===> effect');
     return from(storageService.get(ENTITY, itemId) as Promise<Item>)
     // return from(axios.get(URL + itemId) as Promise<Item>)
   }

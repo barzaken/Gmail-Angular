@@ -3,17 +3,22 @@
         <input type="checkbox"/>
         <mat-icon class="icon">rotate_right</mat-icon>
         <mat-icon class="icon">more_vert</mat-icon>
-
         <!-- <input type="checkbox"/> -->
         <!-- <input type="checkbox"/> -->
     </div>
     <div class="item-preview">
-        <item-preview *ngFor="let item of items" [item]="item">
+        <item-preview (click)="editItem(item._id)" *ngFor="let item of items$ | async" [item]="item">
             <section class="actions">
                 <input type="checkbox"/>
-                <mat-icon class="star-icon">star_border</mat-icon>
+                <mat-icon (click)="$event.stopPropagation();toggleStar(item)" class="star-icon" ngClass="{{item.isStar? 'starred' : ''}}">{{item.isStar? 'star' : 'star_border'}}</mat-icon>
                 <!-- <button (click)="removeItem(item._id)">x</button> -->
                 <!-- <button (click)="editItem(item._id)">Edit</button> -->
+            </section>
+            <section edit class="quick-actions">
+                <mat-icon (click)="$event.stopPropagation();archiveEmail(item)">archive</mat-icon>
+                <mat-icon (click)="$event.stopPropagation();deleteEmail(item._id)">delete</mat-icon>
+                <mat-icon (click)="$event.stopPropagation();toggleRead(item)">markunread</mat-icon>
+                <!-- <mat-icon (click)="toggleSnooze($event)">access_time</mat-icon> -->
             </section>
         </item-preview>
     </div>

@@ -1,18 +1,23 @@
-import { SET_LOADING, LOADED_ITEMS, REMOVED_ITEM, ADDED_ITEM, UPDATED_ITEM, LOADED_ITEM, SET_ERROR } from '../actions/item.actions';
+import { SET_LOADING, LOADED_ITEMS, REMOVED_ITEM, ADDED_ITEM, UPDATED_ITEM, LOADED_ITEM, SET_ERROR,SET_FILTER } from '../actions/item.actions';
 import { Item } from 'src/app/models/item';
+import { createSelector } from '@ngrx/store';
+import { filter } from 'rxjs';
 
 export interface ItemState {
   items: Item[];
   item: Item | null;
   isLoading: boolean;
   error: string;
+  filterBy: object;
+
 }
 
 const initialState: ItemState = {
   items: [],
   item: null,
   isLoading: false,
-  error: ''
+  error: '',
+  filterBy:{txt:'',category:''}
 };
 
 export function reducer(state: ItemState = initialState, action: any): ItemState {
@@ -27,6 +32,11 @@ export function reducer(state: ItemState = initialState, action: any): ItemState
       console.log(`Reducer: Setting item error`, error);
       return { ...state, error, isLoading: false };
     }
+    case SET_FILTER: {
+      const { filterBy } = action;
+      console.log(`Reducer: Setting filter`, filterBy);
+      return { ...state, filterBy, isLoading: false };
+    }
     case LOADED_ITEMS: {
       const { items } = action;
       console.log(`Reducer: Setting loaded items (${items.length}) items`);
@@ -36,7 +46,6 @@ export function reducer(state: ItemState = initialState, action: any): ItemState
       const { item } = action;
       console.log(`Reducer: Setting loaded item ${item._id}`);
       return { ...state, item, error: '' };
-
     }
     case REMOVED_ITEM: {
       const { itemId } = action;
@@ -61,3 +70,19 @@ export function reducer(state: ItemState = initialState, action: any): ItemState
       return state;
   }
 }
+
+export const filterBy = (state: ItemState) => state.filterBy;
+export const allItems = (state: ItemState) => state.items;
+
+export const itemsToShow = createSelector(
+  filterBy,
+  allItems,
+  (filterBy: any, allItems: Item[]) => {
+    if (filterBy && allItems) {
+      const regex = new RegExp(filterBy.txt,'i');
+      return allItems.filter((item: Item) => regex.test(item.subject));
+    } else {
+      return allItems;
+    }
+  }
+);

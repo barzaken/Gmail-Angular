@@ -4,12 +4,14 @@
         <span>Gmail</span>
     </div>
     <div class="search-bar">
-        <input placeholder="Search in mail" type="search">
+        <input (input)="setFilter()" [(ngModel)]="filterBy.txt" placeholder="Search in mail" type="search">
     </div>
     <div class="user-area">
-        <button>SETTINGS</button>
+        <mat-icon class="settings-icon">settings</mat-icon>
         <div class="user">
-            <img src="../../../assets/img/icons8-gmail-48.png" alt="" />
+            <div class="user-avatar">
+                <span>B</span>
+            </div>
             <h3>Bar</h3>
         </div>
     </div>

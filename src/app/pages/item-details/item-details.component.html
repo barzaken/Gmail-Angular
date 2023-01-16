@@ -1,0 +1,30 @@
+<!-- <pre>{{}}</pre> -->
+<h2>details</h2>
+<section class="item-details" *ngIf="(item$ | async)">
+    <div class="actions">
+        <mat-icon>arrow_back</mat-icon>
+        <mat-icon>archive</mat-icon>
+        <mat-icon>delete</mat-icon>
+        <mat-icon>markunread</mat-icon>
+    </div>
+    <div class="info">
+        <div class="subject">
+            <span>{{(item$ | async)?.subject }}</span>
+        </div>
+        <div class="sender">
+            <div class="avatar">
+                <span>B</span>
+            </div>
+            <div class="sender-info">
+                <div class="info-container">
+                    <span>{{(item$ | async)?.from  }}</span>
+                    <span class="date">{{(item$ | async)?.sentAt | date}}</span>
+                </div>
+                <span>{{(item$ | async)?.to  }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <pre>{{(item$ | async)?.body }}</pre>
+    </div>
+</section>

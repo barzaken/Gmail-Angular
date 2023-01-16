@@ -23,6 +23,8 @@ import { ItemEditComponent } from './cmps/item-edit/item-edit.component';
 import { ItemPreviewComponent } from './cmps/item-preview/item-preview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideBarComponent } from './cmps/side-bar/side-bar.component';
+import { EmailDetailsComponent } from './cmps/email-details/email-details.component';
+import { ItemDetailsComponent } from './pages/item-details/item-details.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { SideBarComponent } from './cmps/side-bar/side-bar.component';
     ItemListComponent,
     ItemPreviewComponent,
     SideBarComponent,
+    EmailDetailsComponent,
+    ItemDetailsComponent,
     // ItemPreviewComponent,
   ],
   imports: [

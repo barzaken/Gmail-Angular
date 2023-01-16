@@ -10,10 +10,16 @@
   display: flex;
   align-items: center;
   .logo{
-    flex: 1;
-    max-width: 300px;
+    // flex: 1;
+    width: 225px;
+    // max-width: 225px;
     display: flex;
     align-items: center;
+    gap: 5px;
+    span{
+      color: #444746;
+      font-size: 22px;
+    }
   }
   .search-bar{
     flex:1;
@@ -21,10 +27,11 @@
       transition: background 200ms ease-in,width 200ms ease-out;
       background: #f1f3f4;
       border: none;
+      border-radius: 8px;
       padding: 15px;
       width: 100%;
       max-width: 720px;
-      background: #f1f3f4;
+      background-color: #E9F1FB;
     &:focus{
       background: rgba(255,255,255,1);
       box-shadow: 0 1px 1px 0 rgb(65 69 75 /30%),0 1px 3px 1px rgb(65 69 73 /15%);
@@ -33,16 +40,39 @@
     }
   }
   .user-area{
-    display: flex;
+  display: flex;
     gap: 10px;
     align-items: center;
-    button{
-      max-height: 30px;
+    .settings-icon{
+      cursor: pointer;
     }
     .user{
       display: flex;
       align-items: center;
       gap: 10px;
+      background-color: rgba(255,255,255,.88);
+       border: 1px solid #dadce0;
+      cursor: pointer;
+    max-height: 48px;
+    outline: none;
+    padding: 0 5px 0;
+    height: 50px;
+    // vertical-align: middle;
+    width: 134px;
+    border-radius: 8px;
+    .user-avatar{
+      border-radius: 50%;
+      background-color: rgb(64, 134, 196);
+      span{
+        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+      }
+    }
       h3{
         margin: 0;
       }

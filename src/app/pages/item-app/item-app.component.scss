@@ -1,13 +1,10 @@
 :host{
   grid-area: main;
+  overflow-y: hidden;
 }
 .item-app-container {
   display: flex;
-  overflow-y: hidden;
-  .email-list{
-    flex: 1;
-    overflow-y: hidden;
-  }
+  height: 100%;
 }
 
 .error-msg {
