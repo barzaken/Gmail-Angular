@@ -1,13 +1,9 @@
 <main class="email-app-container">
-<side-bar [filterBy]="filterBy$ | async" (filter)="setFilter($event)" (toggle)="addingNew = !addingNew"></side-bar>
-    <!-- <div class="email-list">
-        <p *ngIf="isLoading$ | async">⏱ Loading...</p>
-        <email-list (toggledStar)="toggleStar($event)" (toggledRead)="toggleRead($event)" (archived)="archiveEmail($event)" (deleted)="deleteEmail($event)" (edited)="editEmail($event)"[emails]="emails$ | async">
-        </email-list>
-    </div> -->
+<side-bar [filterBy]="filterBy$ | async" (filter)="setFilter($event)" (toggle)="toggleModal(true)"></side-bar>
     <router-outlet></router-outlet>
-    <section *ngIf="addingNew || (email$ | async)">
+    <!-- <section *ngIf="isAdding$ | async|| (email$ | async)"> -->
+    <section *ngIf="isAdding$ | async">
     <!-- <section *ngIf="addingNew"> -->
-        <email-edit (close)="addingNew =false" (saved)="addingNew=false"></email-edit>
+        <email-edit (close)="toggleModal(false)" (saved)="addingNew=false"></email-edit>
     </section>
 </main>

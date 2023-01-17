@@ -1,4 +1,4 @@
-import { LoadedEmail, SaveEmail,RemoveEmail } from '../../store/actions/email.actions';
+import { SetModal, SaveEmail,RemoveEmail } from '../../store/actions/email.actions';
 import { Component,OnInit,OnDestroy } from '@angular/core';
 import { Email } from 'src/app/models/email';
 import { Store } from '@ngrx/store';
@@ -25,7 +25,7 @@ export class EmailDetailsComponent implements OnInit,OnDestroy{
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.store.dispatch(new LoadEmail(this.id));
-    this.email$.pipe().subscribe(email => this.email = JSON.parse(JSON.stringify(email)) )
+    this.email$.pipe().subscribe(email => this.email = JSON.parse(JSON.stringify(email))) 
   }
   ngOnDestroy(): void {
     this.email.isRead = true
@@ -34,9 +34,12 @@ export class EmailDetailsComponent implements OnInit,OnDestroy{
 
   deleteEmail() {
     console.log('emailApp: dispatching remove');
-    this.store.dispatch(new RemoveEmail(this.email._id))
-    this.goBack()
-
+    if(this.email.removedAt){
+      this.store.dispatch(new RemoveEmail(this.email._id));
+      return
+    }
+    this.email.removedAt = Date.now()
+    this.store.dispatch(new SaveEmail(this.email));
   }
   toggleRead(){
     this.email.isRead = !this.email.isRead
@@ -46,6 +49,12 @@ export class EmailDetailsComponent implements OnInit,OnDestroy{
     this.email.isDraft = !this.email.isDraft
     this.store.dispatch(new SaveEmail(this.email))
   }
+  replyEmail(emailId: string) {
+    console.log('emailApp: dispatching remove');
+    this.store.dispatch(new LoadEmail(emailId));
+    this.store.dispatch(new SetModal(true));
+  }
+
 
   goBack(){
     this.router.navigate([`email`])

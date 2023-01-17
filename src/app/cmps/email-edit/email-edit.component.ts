@@ -13,7 +13,7 @@ import { State } from '../../store/store';
 })
 export class EmailEditComponent implements OnInit {
   email$: Observable<Email | null>;
-  email = { _id: '', subject: '',body:'',isDraft:false,isRead:false,isStar:false,removedAt:null,sentAt:0,from:'',to:'' }
+  email = { _id: '', subject: '', body: '', isDraft: false, isRead: false, isStar: false, removedAt: null, sentAt: 0, from: '', to: '' }
   @Output() saved = new EventEmitter();
   @Output() close = new EventEmitter();
   sub: Subscription | null = null;
@@ -21,9 +21,9 @@ export class EmailEditComponent implements OnInit {
   constructor(private store: Store<State>) {
     this.email$ = this.store.select('emailState').pipe(pluck('email'));
   }
+
   get emailEditState() {
-    // return (this.email._id)? 'Update' : 'Add'
-    return (this.email._id)? 'Reply' : 'New'
+    return (this.email._id) ? 'Reply' : 'New'
   }
 
   ngOnInit(): void {
@@ -32,23 +32,20 @@ export class EmailEditComponent implements OnInit {
         this.email = JSON.parse(JSON.stringify(email))
         this.email.subject = 'Reply: ' +  this.email.subject
         this.email.to = this.email.from
-
-        this.store.dispatch(new SaveEmail(this.email));
+        // this.store.dispatch(new SaveEmail(this.email));
       } 
     })
-
+    
   }
   saveEmail() {
     this.email.sentAt = Date.now()
     this.email.from = 'me'
     this.email._id = ''
-    // this.email.isStar = true
     this.store.dispatch(new SaveEmail(this.email));
-    console.log('Saving: ', this.email);
     this.saved.emit();
   }
 
-  closeModal(){
+  closeModal() {
     this.close.emit()
   }
 

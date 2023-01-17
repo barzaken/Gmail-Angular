@@ -1,30 +1,32 @@
 <section class="side-bar">
-<div class="compose-btn">
-        <!-- <mat-icon>add</mat-icon> -->
+    <div class="compose-btn">
         <mat-icon>create</mat-icon>
         <button (click)="toggleSidebar()">Compose</button>
-</div>
-<div class="nav-btns">
-    <div class="nav-btn" ngClass="{{filterBy.category === '' ? 'selected' : ''}}" (click)="this.filter.emit('')">
-        <mat-icon>inbox</mat-icon>
-        <button>Inbox</button>
     </div>
-    <div class="nav-btn" ngClass="{{filterBy.category === 'star' ? 'selected' : ''}}" (click)="this.filter.emit('star')">
-        <mat-icon>star_border</mat-icon>
-        <button>Starred</button>
+    <div class="nav-btns">
+        <div class="nav-btn" ngClass="{{filterBy.category === '' ? 'selected' : ''}}" (click)="this.filter.emit('')">
+            <mat-icon>inbox</mat-icon>
+            <button>Inbox</button>
+        </div>
+        <div class="nav-btn" ngClass="{{filterBy.category === 'star' ? 'selected' : ''}}"
+            (click)="this.filter.emit('star')">
+            <mat-icon>star_border</mat-icon>
+            <button>Starred</button>
+        </div>
+        <div class="nav-btn" ngClass="{{filterBy.category === 'sent' ? 'selected' : ''}}"
+            (click)="this.filter.emit('sent')">
+            <mat-icon>send</mat-icon>
+            <button>Sent</button>
+        </div>
+        <div class="nav-btn" ngClass="{{filterBy.category === 'draft' ? 'selected' : ''}}"
+            (click)="this.filter.emit('draft')">
+            <mat-icon>drafts</mat-icon>
+            <button>Drafts</button>
+        </div>
+        <div class="nav-btn" ngClass="{{filterBy.category === 'trash' ? 'selected' : ''}}"
+            (click)="this.filter.emit('trash')">
+            <mat-icon>delete</mat-icon>
+            <button>Trash</button>
+        </div>
     </div>
-    <div class="nav-btn" ngClass="{{filterBy.category === 'snoozed' ? 'selected' : ''}}" (click)="this.filter.emit('snoozed')">
-        <mat-icon>access_time</mat-icon>
-        <button>Snoozed</button>
-    </div>
-    <div class="nav-btn" ngClass="{{filterBy.category === 'sent' ? 'selected' : ''}}" (click)="this.filter.emit('sent')">
-        <mat-icon>send</mat-icon>
-        <button>Sent</button>
-    </div>
-    <div class="nav-btn" ngClass="{{filterBy.category === 'draft' ? 'selected' : ''}}" (click)="this.filter.emit('draft')">
-        <mat-icon>drafts</mat-icon>
-        <button>Drafts</button>
-    </div>
-</div>
-
 </section>

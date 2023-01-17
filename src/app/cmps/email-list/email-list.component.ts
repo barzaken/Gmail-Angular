@@ -7,7 +7,7 @@ import { pluck } from 'rxjs/operators';
 import { State } from '../../store/store';
 import {Router} from '@angular/router';
 
-import {LoadEmail, LoadEmails, RemoveEmail,SaveEmail,SetFilter} from '../../store/actions/email.actions';
+import {LoadEmail, RemoveEmail,SaveEmail,SetModal} from '../../store/actions/email.actions';
 @Component({
   selector: 'email-list',
   templateUrl: './email-list.component.html',
@@ -15,27 +15,19 @@ import {LoadEmail, LoadEmails, RemoveEmail,SaveEmail,SetFilter} from '../../stor
 })
 export class EmailListComponent implements OnInit {
   @Input() emails: Email[] | null = [];
-  // @Output() removed = new EventEmitter<string>()
   @Output() edited = new EventEmitter<string>()
   @Output() archived = new EventEmitter<Email>()
   @Output() deleted = new EventEmitter<string>()
   @Output() toggledRead = new EventEmitter<Email>()
   @Output() toggledStar = new EventEmitter<Email>()
-  // constructor() {}
+
   emails$: Observable<Email[]>;
-  email$: Observable<Email | null>;
-  isLoading$: Observable<boolean>;
-  error$: Observable<string>;
-  addingNew = false;
   filterBy$: Observable<object>;
   emailsToShow:Email[] = []
   currFilter:any = {}
+
   constructor(private store: Store<State>,private router: Router) {
     this.emails$ = this.store.select('emailState').pipe(pluck('emails'));
-    // this.emails$ =  this.store.select(emailState.emailsToShow)
-    this.email$ = this.store.select('emailState').pipe(pluck('email'));
-    this.isLoading$ = this.store.select('emailState').pipe(pluck('isLoading'));
-    this.error$ = this.store.select('emailState').pipe(pluck('error'));
     this.filterBy$ = this.store.select('emailState').pipe(pluck('filterBy'));
   }
 
@@ -46,7 +38,6 @@ export class EmailListComponent implements OnInit {
   }
 
   filteredEmails(){
-    console.log('working',this.emailsToShow,this.currFilter);
     if(this.currFilter.txt){
       let regex = new RegExp(this.currFilter.txt,'i')
       return this.emailsToShow.filter(email => regex.test(email.subject) || regex.test(email.body) )
@@ -54,16 +45,25 @@ export class EmailListComponent implements OnInit {
     if(this.currFilter.category === 'star') return this.emailsToShow.filter(email => email.isStar)
     if(this.currFilter.category === 'draft') return this.emailsToShow.filter(email => email.isDraft)
     if(this.currFilter.category === 'sent') return this.emailsToShow.filter(email => email.from === 'me')
-    return this.emailsToShow
+    if(this.currFilter.category === 'trash') return this.emailsToShow.filter(email => email.removedAt)
+    return this.emailsToShow.filter(email => !email.removedAt)
   }
 
-  deleteEmail(emailId: string) {
+  deleteEmail(email: Email) {
     console.log('emailApp: dispatching remove');
-    this.store.dispatch(new RemoveEmail(emailId));
+    let emailToSave =  JSON.parse(JSON.stringify(email));
+    if(emailToSave.removedAt){
+          this.store.dispatch(new RemoveEmail(emailToSave._id));
+          return
+    }
+    emailToSave.removedAt = Date.now()
+    this.store.dispatch(new SaveEmail(emailToSave));
   }
+
   replyEmail(emailId: string) {
     console.log('emailApp: dispatching remove');
     this.store.dispatch(new LoadEmail(emailId));
+    this.store.dispatch(new SetModal(true));
   }
 
   editEmail(emailId: string) {
@@ -71,25 +71,24 @@ export class EmailListComponent implements OnInit {
     this.store.dispatch(new LoadEmail(emailId));
     this.router.navigate([`email/${emailId}`]);
   }  
+
   toggleStar(email: Email){
     let emailToSave =  JSON.parse(JSON.stringify(email));
     emailToSave.isStar = !emailToSave.isStar
     this.store.dispatch(new SaveEmail(emailToSave));
   }
+
   toggleRead(email: Email){
     let emailToSave =  JSON.parse(JSON.stringify(email));
     emailToSave.isRead = !emailToSave.isRead
     console.log(emailToSave.isRead);
     this.store.dispatch(new SaveEmail(emailToSave));
   }
+
   archiveEmail(email: Email){
     let emailToSave =  JSON.parse(JSON.stringify(email));
     emailToSave.isDraft = !emailToSave.isDraft
     this.store.dispatch(new SaveEmail(emailToSave));
   }
-  setFilter(filterBy: object){
-    console.log(filterBy);
-    let newFilter = {txt:'',category:filterBy}
-    this.store.dispatch(new SetFilter(newFilter));
-  }
+
 }

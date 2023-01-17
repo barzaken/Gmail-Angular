@@ -1,9 +1,10 @@
 <section class="email-details" *ngIf="(email)">
     <div class="actions">
-        <mat-icon (click)="goBack()">arrow_back</mat-icon>
-        <mat-icon (click)="archiveEmail()">archive</mat-icon>
-        <mat-icon (click)="deleteEmail()">delete</mat-icon>
-        <mat-icon (click)="toggleRead()">markunread</mat-icon>
+        <mat-icon title="Back" (click)="goBack()">arrow_back</mat-icon>
+        <mat-icon title="Archive" (click)="archiveEmail()">archive</mat-icon>
+        <mat-icon title="Delete" (click)="deleteEmail()">delete</mat-icon>
+        <mat-icon title="Mark unread"(click)="toggleRead()">markunread</mat-icon>
+        <mat-icon title="Reply" (click)="replyEmail(email._id)">reply</mat-icon>
     </div>
     <div class="info">
         <div class="subject">

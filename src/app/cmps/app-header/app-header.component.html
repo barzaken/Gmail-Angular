@@ -1,7 +1,9 @@
 <nav class="nav-container">
     <div class="logo" (click)="this.router.navigate(['/'])">
-        <img src="../../../assets/img/icons8-gmail-48.png" alt="" />
-        <span>Gmail</span>
+        <div class="logo-img">
+            <img src="../../../assets/img/icons8-gmail-48.png" alt="" />
+            <span>Gmail</span>
+        </div>
     </div>
     <div class="search-bar">
         <input (input)="setFilter()" [(ngModel)]="filterBy.txt" placeholder="Search in mail" type="search">
@@ -15,19 +17,4 @@
             <h3>Bar</h3>
         </div>
     </div>
-    <!-- <div class="flex">
-        <a routerLinkActive="active-nav" routerLink="/home" [routerLinkActiveOptions]="{exact: true}">
-            <div class="flex align-center">
-                <span class="nav-txt">Home</span>
-            </div>
-        </a>
-        <a routerLinkActive="active-nav" routerLink="/item" [routerLinkActiveOptions]="{exact: true}">
-            <div class="flex align-center">
-                <span class="nav-txt">Emails</span>
-            </div>
-        </a>
-    </div>
-    <a routerLink="/home">
-        <img src="./assets/img/logo.png" alt="app-logo" title="Go home" />
-    </a> -->
 </nav>

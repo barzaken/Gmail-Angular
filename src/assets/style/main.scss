@@ -16,7 +16,17 @@
 
 mat-icon{
     color: #444746;
+    cursor: pointer;
     font-size: 20px !important;
     width: 20px !important;
     height: 20px !important;
 }
+
+@media screen and (max-width:640px) {
+    .email-app-container{
+        side-bar{
+            display: none;
+        }
+    }
+}
+

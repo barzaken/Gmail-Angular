@@ -5,19 +5,22 @@
 .nav-container {
   background-color: #F7F8FC;
   width: 100%;
-  padding: 0px 30px 0px;
+  padding: 0px 20px 0px;
   height: 60px;
   display: flex;
   align-items: center;
   .logo{
-    width: 225px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-    span{
-      color: #444746;
-      font-size: 22px;
+    width: 235px;
+    .logo-img{
+      width: max-content;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      span{
+        color: #444746;
+        font-size: 22px;
+      }
     }
   }
   .search-bar{

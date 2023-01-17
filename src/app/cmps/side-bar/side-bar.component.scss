@@ -4,7 +4,7 @@
 
 .side-bar {
     padding: 16px;
-    background-color: #F7F8FC;
+    background-color: #f7f8fc;
     height: 100%;
     .compose-btn {
         display: flex;
@@ -18,13 +18,13 @@
         transition: box-shadow 0.08s linear, min-width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         color: #001d35;
         margin-bottom: 10px;
-        button{
+        button {
             font-size: 0.875rem;
             border: none;
             height: 56px;
             background-color: transparent;
         }
-        &:hover{
+        &:hover {
             box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%);
             background-color: #c2e7ff;
         }
@@ -33,16 +33,20 @@
         display: flex;
         flex-direction: column;
         gap: 2px;
-        .nav-btn{
+        .nav-btn {
             flex: 1;
             display: flex;
             align-items: center;
             border-radius: 16px;
             padding: 0px 14px 0px;
-            &.selected{
+            &.selected {
                 background-color: #d3e3fd;
+                & > * {
+                    color: #001d35;
+                    font-weight: 500;
+                }
             }
-            button{
+            button {
                 background-color: transparent;
                 border: none;
                 display: flex;
@@ -50,15 +54,15 @@
                 height: 32px;
                 padding: 0 12px 0 16px;
                 width: 100%;
-                font-family: "Google Sans",Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
-                font-size: .875rem;
+                font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+                font-size: 0.875rem;
                 letter-spacing: normal;
                 color: #202124;
                 color: #001d35;
                 text-shadow: none;
             }
-            &:hover:not(.selected){
-                background-color: rgba(32,33,36,0.059);
+            &:hover:not(.selected) {
+                background-color: rgba(32, 33, 36, 0.059);
             }
         }
     }

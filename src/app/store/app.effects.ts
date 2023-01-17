@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, catchError, switchMap, tap } from 'rxjs/operators';
 import { EmailService } from '../services/email.service';
-import { EmailAction, SAVE_ITEM, ADDED_ITEM, UPDATED_ITEM, LOAD_ITEMS, LOADED_ITEMS, REMOVE_ITEM, REMOVED_ITEM, LOAD_ITEM, LOADED_ITEM, SET_ERROR } from './actions/email.actions';
+import { EmailAction, SAVE_EMAIL, ADDED_EMAIL, UPDATED_EMAIL, LOAD_EMAILS, LOADED_EMAILS, REMOVE_EMAIL, REMOVED_EMAIL, LOAD_EMAIL, LOADED_EMAIL, SET_ERROR } from './actions/email.actions';
 
 // TODO: Add EmailFilter
 
@@ -13,13 +13,13 @@ export class AppEffects {
 
   loadEmails$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(LOAD_ITEMS),
+      ofType(LOAD_EMAILS),
       tap(() => console.log('Effects: load emails ==> service')),
       switchMap((action) =>
         this.emailService.query(action.filterBy).pipe(
           tap(() => console.log('Effects: Got emails from service, send it to ===> Reducer')),
           map((emails) => ({
-            type: LOADED_ITEMS,
+            type: LOADED_EMAILS,
             emails,
           })),
           catchError((error) => {
@@ -35,13 +35,13 @@ export class AppEffects {
   });
   loadEmail$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(LOAD_ITEM),
+      ofType(LOAD_EMAIL),
       tap(() => console.log('Effects: load email ==> service')),
       switchMap((action) =>
         this.emailService.getById(action.emailId).pipe(
           tap(() => console.log('Effects: Got email from service ===> Reducer')),
           map((email) => ({
-            type: LOADED_ITEM,
+            type: LOADED_EMAIL,
             email
           })),
           catchError((error) => {
@@ -57,12 +57,12 @@ export class AppEffects {
   });
   removeEmail$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(REMOVE_ITEM),
+      ofType(REMOVE_EMAIL),
       switchMap((action) =>
         this.emailService.remove(action.emailId).pipe(
           tap(() => console.log('Effects: Email removed by service ===> Reducer')),
           map(() => ({
-            type: REMOVED_ITEM,
+            type: REMOVED_EMAIL,
             emailId: action.emailId,
           })),
           catchError((error) => {
@@ -78,12 +78,12 @@ export class AppEffects {
   })
   saveEmail$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(SAVE_ITEM),
+      ofType(SAVE_EMAIL),
       switchMap((action) =>
         this.emailService.save(action.email).pipe(
           tap(() => console.log('Effects: Email saved by service, inform the ===> Reducer')),
           map((savedEmail) => ({
-            type: (action.email._id) ? UPDATED_ITEM : ADDED_ITEM,
+            type: (action.email._id) ? UPDATED_EMAIL : ADDED_EMAIL,
             email: savedEmail,
           })),
           catchError((error) => {

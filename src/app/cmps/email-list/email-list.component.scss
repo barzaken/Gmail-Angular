@@ -36,7 +36,10 @@
         display: flex;
         gap: 15px;
     }
-    .item-preview{
+    .email-preview{
         overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
     }
 }
