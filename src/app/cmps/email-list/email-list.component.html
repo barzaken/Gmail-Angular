@@ -7,7 +7,8 @@
         <!-- <input type="checkbox"/> -->
     </div>
     <div class="email-preview">
-        <email-preview (click)="editEmail(email._id)" *ngFor="let email of emails$ | async" [email]="email">
+        <!-- <email-preview (click)="editEmail(email._id)" *ngFor="let email of emails$ | async" [email]="email"> -->
+        <email-preview (click)="editEmail(email._id)" *ngFor="let email of filteredEmails()" [email]="email">
             <section class="actions">
                 <input type="checkbox"/>
                 <mat-icon (click)="$event.stopPropagation();toggleStar(email)" class="star-icon" ngClass="{{email.isStar? 'starred' : ''}}">{{email.isStar? 'star' : 'star_border'}}</mat-icon>

@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, filter } from 'rxjs';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import {EventEmitter} from '@angular/core';
 import { Email } from 'src/app/models/email';
@@ -28,7 +28,8 @@ export class EmailListComponent implements OnInit {
   error$: Observable<string>;
   addingNew = false;
   filterBy$: Observable<object>;
-
+  emailsToShow:Email[] = []
+  currFilter:any = {}
   constructor(private store: Store<State>,private router: Router) {
     this.emails$ = this.store.select('emailState').pipe(pluck('emails'));
     // this.emails$ =  this.store.select(emailState.emailsToShow)
@@ -39,27 +40,27 @@ export class EmailListComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {}
-  // removeEmail(emailId: string) {
-  //   console.log('EmailList Emitting removed to Parent');
-  //   this.removed.emit(emailId)
-  // }
-  // editEmail(emailId: string) {
-  //   console.log('EmailList Emitting edited to Parent');
-  //   this.edited.emit(emailId)
-  // }
+  ngOnInit(): void {
+    this.emails$.pipe().subscribe(emails => this.emailsToShow = JSON.parse(JSON.stringify(emails)) )
+    this.filterBy$.pipe().subscribe(filter => this.currFilter = JSON.parse(JSON.stringify(filter)) )
+  }
+
+  filteredEmails(){
+    console.log('working',this.emailsToShow,this.currFilter);
+    if(this.currFilter.txt){
+      let regex = new RegExp(this.currFilter.txt,'i')
+      return this.emailsToShow.filter(email => regex.test(email.subject) || regex.test(email.body) )
+    }
+    if(this.currFilter.category === 'star') return this.emailsToShow.filter(email => email.isStar)
+    if(this.currFilter.category === 'draft') return this.emailsToShow.filter(email => email.isDraft)
+    if(this.currFilter.category === 'sent') return this.emailsToShow.filter(email => email.from === 'me')
+    return this.emailsToShow
+  }
+
   deleteEmail(emailId: string) {
     console.log('emailApp: dispatching remove');
     this.store.dispatch(new RemoveEmail(emailId));
   }
-  // toggleRead(email: Email) {
-  //   console.log('EmailList Emitting edited to Parent');
-  //   this.toggledRead.emit(email)
-  // }
-  // toggleStar(email: Email) {
-  //   console.log('EmailList Emitting edited to Parent');
-  //   this.toggledStar.emit(email)
-  // }
   replyEmail(emailId: string) {
     console.log('emailApp: dispatching remove');
     this.store.dispatch(new LoadEmail(emailId));
