@@ -54,8 +54,8 @@ export class ItemListComponent implements OnInit {
     // this.archived.emit(itemId)
   }
   deleteEmail(itemId: string) {
-    console.log('ItemList Emitting edited to Parent');
-    this.deleted.emit(itemId)
+    console.log('itemApp: dispatching remove');
+    this.store.dispatch(new RemoveItem(itemId));
   }
   // toggleRead(item: Item) {
   //   console.log('ItemList Emitting edited to Parent');
@@ -67,13 +67,6 @@ export class ItemListComponent implements OnInit {
   // }
 
 
-
-
-
-  deleteItem(itemId :string) {
-    console.log('itemApp: dispatching remove');
-    this.store.dispatch(new RemoveItem(itemId));
-  }
   editItem(itemId: string) {
     console.log('itemApp: dispatching load item (for edit)');
     this.store.dispatch(new LoadItem(itemId));

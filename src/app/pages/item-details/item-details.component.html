@@ -1,15 +1,13 @@
-<!-- <pre>{{}}</pre> -->
-<h2>details</h2>
-<section class="item-details" *ngIf="(item$ | async)">
+<section class="item-details" *ngIf="(item)">
     <div class="actions">
-        <mat-icon>arrow_back</mat-icon>
-        <mat-icon>archive</mat-icon>
-        <mat-icon>delete</mat-icon>
-        <mat-icon>markunread</mat-icon>
+        <mat-icon (click)="goBack()">arrow_back</mat-icon>
+        <mat-icon (click)="archiveEmail()">archive</mat-icon>
+        <mat-icon (click)="deleteEmail()">delete</mat-icon>
+        <mat-icon (click)="toggleRead()">markunread</mat-icon>
     </div>
     <div class="info">
         <div class="subject">
-            <span>{{(item$ | async)?.subject }}</span>
+            <span>{{item.subject }}</span>
         </div>
         <div class="sender">
             <div class="avatar">
@@ -17,14 +15,14 @@
             </div>
             <div class="sender-info">
                 <div class="info-container">
-                    <span>{{(item$ | async)?.from  }}</span>
-                    <span class="date">{{(item$ | async)?.sentAt | date}}</span>
+                    <span>{{item.from}}</span>
+                    <span class="date">{{item.sentAt | date}}</span>
                 </div>
-                <span>{{(item$ | async)?.to  }}</span>
+                <span>{{item.to}}</span>
             </div>
         </div>
     </div>
     <div class="body">
-        <pre>{{(item$ | async)?.body }}</pre>
+        <pre>{{item.body }}</pre>
     </div>
 </section>

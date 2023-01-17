@@ -28,7 +28,6 @@ export class ItemEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.item$.subscribe(item => {
-      console.log('Got Item to Edit', item);
       if (item){
         this.item = JSON.parse(JSON.stringify(item))
         this.item.subject = 'Reply: ' +  this.item.subject

@@ -64,7 +64,8 @@ export function reducer(state: ItemState = initialState, action: any): ItemState
       const { item } = action;
       console.log('Reducer: Updating item:', item);
       const items = state.items.map(currItem => (currItem._id === item._id) ? item : currItem)
-      return { ...state, items, item: null, error: '' };
+      // return { ...state, items, item: null, error: '' };
+      return { ...state, items, error: '' };
     }
     default:
       return state;
