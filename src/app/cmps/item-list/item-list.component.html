@@ -15,6 +15,7 @@
                 <!-- <button (click)="editItem(item._id)">Edit</button> -->
             </section>
             <section edit class="quick-actions">
+                <mat-icon (click)="$event.stopPropagation();replyEmail(item._id)">reply</mat-icon>
                 <mat-icon (click)="$event.stopPropagation();archiveEmail(item)">archive</mat-icon>
                 <mat-icon (click)="$event.stopPropagation();deleteEmail(item._id)">delete</mat-icon>
                 <mat-icon (click)="$event.stopPropagation();toggleRead(item)">markunread</mat-icon>

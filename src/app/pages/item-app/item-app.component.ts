@@ -65,5 +65,6 @@ export class ItemAppComponent implements OnInit {
     let newFilter = {txt:'',category:filterBy}
     this.store.dispatch(new SetFilter(newFilter));
   }
+
   
 }

@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     & > * {
-        padding: 20px;
+        padding: 10px;
     }
     .actions{
         height: 50px;
@@ -24,9 +24,9 @@
     .info{
         display: flex;
         flex-direction: column;
+        gap: 15px;
         .subject{
             width: 100%;
-            text-align: center;
             span{
                 font-size: 22px;
             }
@@ -69,7 +69,7 @@
         display: flex;
         pre{
             flex: 1;
-            background-color: white;
+            background-color: rgb(251, 251, 251);
             outline: none;
         }
     }

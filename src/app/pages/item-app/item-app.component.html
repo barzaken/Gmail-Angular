@@ -6,7 +6,8 @@
         </item-list>
     </div> -->
     <router-outlet></router-outlet>
-    <section *ngIf="addingNew || (item$ | async)">
+    <section *ngIf="addingNew && (item$ | async)">
+    <!-- <section *ngIf="addingNew"> -->
         <item-edit (close)="addingNew =false" (saved)="addingNew=false"></item-edit>
     </section>
 </main>

@@ -12,7 +12,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class AppHeaderComponent implements OnInit { 
   filterBy= {txt:''}
-  constructor(private store: Store<State>,private router: Router,private route: ActivatedRoute) {
+  constructor(private store: Store<State>,public router: Router) {
     // this.filterBy$ = this.store.select('itemState').pipe(pluck('filterBy'));
   }
   setFilter(){

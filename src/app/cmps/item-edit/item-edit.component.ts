@@ -32,6 +32,8 @@ export class ItemEditComponent implements OnInit {
         this.item = JSON.parse(JSON.stringify(item))
         this.item.subject = 'Reply: ' +  this.item.subject
         this.item.to = this.item.from
+
+        this.store.dispatch(new SaveItem(this.item));
       } 
     })
 
@@ -45,6 +47,11 @@ export class ItemEditComponent implements OnInit {
     console.log('Saving: ', this.item);
     this.saved.emit();
   }
+
+  closeModal(){
+    this.close.emit()
+  }
+
   ngOnDestroy() {
     this.sub?.unsubscribe()
   }

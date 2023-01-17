@@ -1,7 +1,7 @@
-<section class="item-edit">
+<section class="email-edit">
     <div class="email-header">
         <span>{{itemEditState}} Email</span>
-        <button (click)="this.close.emit()">x</button>
+        <button (click)="closeModal()">x</button>
     </div>
     <form (submit)="$event.preventDefault();saveItem()">
         <div class="email-info">

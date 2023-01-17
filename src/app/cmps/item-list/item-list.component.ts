@@ -65,7 +65,10 @@ export class ItemListComponent implements OnInit {
   //   console.log('ItemList Emitting edited to Parent');
   //   this.toggledStar.emit(item)
   // }
-
+  replyEmail(itemId: string) {
+    console.log('itemApp: dispatching remove');
+    this.store.dispatch(new LoadItem(itemId));
+  }
 
   editItem(itemId: string) {
     console.log('itemApp: dispatching load item (for edit)');
