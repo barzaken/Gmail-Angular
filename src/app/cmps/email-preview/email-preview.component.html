@@ -1,16 +1,16 @@
-<section class="item-preview" ngClass="{{item?.isRead ? 'opened' : ''}}">
+<section class="email-preview" ngClass="{{email?.isRead ? 'opened' : ''}}">
     <div class="email-actions">
         <ng-content></ng-content>
     </div>
-    <h3>{{item?.from}}</h3>
+    <h3>{{email?.from}}</h3>
     <div class="email-info">
-        <h4>{{item?.subject}}</h4>
-        <p>{{item?.body}}</p>
+        <h4>{{email?.subject}}</h4>
+        <p>{{email?.body}}</p>
     </div>
     <div class="quick-actions">
         <ng-content select="[edit]"></ng-content>
     </div>
-    <p class="sent-at">{{item?.sentAt  | date }}</p>
+    <p class="sent-at">{{email?.sentAt  | date }}</p>
     <!-- <hr /> -->
     <!-- Cannot put class on ng-content ): -->
 

@@ -1,4 +1,4 @@
-<section class="item-details" *ngIf="(item)">
+<section class="email-details" *ngIf="(email)">
     <div class="actions">
         <mat-icon (click)="goBack()">arrow_back</mat-icon>
         <mat-icon (click)="archiveEmail()">archive</mat-icon>
@@ -7,22 +7,22 @@
     </div>
     <div class="info">
         <div class="subject">
-            <span>{{item.subject }}</span>
+            <span>{{email.subject }}</span>
         </div>
         <div class="sender">
             <div class="avatar">
-                <span>{{item.from[0] | uppercase}}</span>
+                <span>{{email.from[0] | uppercase}}</span>
             </div>
             <div class="sender-info">
                 <div class="info-container">
-                    <span>{{item.from}}</span>
-                    <span class="date">{{item.sentAt | date}}</span>
+                    <span>{{email.from}}</span>
+                    <span class="date">{{email.sentAt | date}}</span>
                 </div>
-                <span>{{item.to}}</span>
+                <span>{{email.to}}</span>
             </div>
         </div>
     </div>
     <div class="body">
-        <pre>{{item.body }}</pre>
+        <pre>{{email.body }}</pre>
     </div>
 </section>

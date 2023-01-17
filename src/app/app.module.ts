@@ -15,30 +15,30 @@ import { AppEffects } from './store/app.effects';
 
 import { AppComponent } from './root-component/index';
 import { HomeComponent } from './pages/home/home.component';
-import { ItemAppComponent } from './pages/item-app/item-app.component';
+import { EmailAppComponent } from './pages/email-app/email-app.component';
 
 import { AppHeaderComponent } from './cmps/app-header/app-header.component';
-import { ItemListComponent } from './cmps/item-list/item-list.component';
-import { ItemEditComponent } from './cmps/item-edit/item-edit.component';
-import { ItemPreviewComponent } from './cmps/item-preview/item-preview.component';
+import { EmailListComponent } from './cmps/email-list/email-list.component';
+import { EmailEditComponent } from './cmps/email-edit/email-edit.component';
+import { EmailPreviewComponent } from './cmps/email-preview/email-preview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideBarComponent } from './cmps/side-bar/side-bar.component';
-import { EmailDetailsComponent } from './cmps/email-details/email-details.component';
-import { ItemDetailsComponent } from './pages/item-details/item-details.component';
+// import { EmailDetailsComponent } from './cmps/email-details/email-details.component';
+import { EmailDetailsComponent } from './pages/email-details/email-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AppHeaderComponent,
-    ItemAppComponent,
-    ItemEditComponent,
-    ItemListComponent,
-    ItemPreviewComponent,
+    EmailAppComponent,
+    EmailEditComponent,
+    EmailListComponent,
+    EmailPreviewComponent,
     SideBarComponent,
     EmailDetailsComponent,
-    ItemDetailsComponent,
-    // ItemPreviewComponent,
+    EmailDetailsComponent,
+    // EmailPreviewComponent,
   ],
   imports: [
     BrowserModule,

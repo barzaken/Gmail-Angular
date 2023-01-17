@@ -2,18 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, from } from 'rxjs';
-import { Item } from '../models/item';
-import { LoadingItems } from '../store/actions/item.actions';
-import { ItemState } from '../store/reducers/item.reducer';
+import { Email } from '../models/email';
+import { LoadingEmails } from '../store/actions/email.actions';
+import { EmailState } from '../store/reducers/email.reducer';
 
 import { storageService } from './async-storage.service'
 
-const ENTITY = 'item'
+const ENTITY = 'email'
 @Injectable({
   providedIn: 'root',
 })
-export class ItemService {
-  constructor(private store: Store<ItemState>, private http: HttpClient) {
+export class EmailService {
+  constructor(private store: Store<EmailState>, private http: HttpClient) {
 
     // http.get('http://www.filltext.com/?rows=10&id={index}&name={username}')
     // .subscribe(res => {
@@ -21,41 +21,41 @@ export class ItemService {
     // })
 
     // If empty - load test data to storage
-    const items = JSON.parse(localStorage.getItem(ENTITY) || 'null');
-    if (!items || items.length === 0) {
+    const emails = JSON.parse(localStorage.getItem(ENTITY) || 'null');
+    if (!emails || emails.length === 0) {
       console.log('BUU');
-      localStorage.setItem(ENTITY, JSON.stringify(this.createItems()))
+      localStorage.setItem(ENTITY, JSON.stringify(this.createEmails()))
     }
   }
-  query(filterBy = ''): Observable<Item[]> {
+  query(filterBy = ''): Observable<Email[]> {
     console.log('from service',filterBy);
-    this.store.dispatch(new LoadingItems());
-    console.log('ItemService: Return Items ===> effect');
-    return from(storageService.query(ENTITY) as Promise<Item[]>)
-    // return new Observable((observer) => observer.next(items));
+    this.store.dispatch(new LoadingEmails());
+    console.log('EmailService: Return Emails ===> effect');
+    return from(storageService.query(ENTITY) as Promise<Email[]>)
+    // return new Observable((observer) => observer.next(emails));
   }
 
-  getById(itemId: string): Observable<Item> {
-    console.log('ItemService: Return!!!!!!!!!!!!!!! Item ===> effect');
-    return from(storageService.get(ENTITY, itemId) as Promise<Item>)
-    // return from(axios.get(URL + itemId) as Promise<Item>)
+  getById(emailId: string): Observable<Email> {
+    console.log('EmailService: Return!!!!!!!!!!!!!!! Email ===> effect');
+    return from(storageService.get(ENTITY, emailId) as Promise<Email>)
+    // return from(axios.get(URL + emailId) as Promise<Email>)
   }
   
-  remove(itemId: string): Observable<boolean> {
+  remove(emailId: string): Observable<boolean> {
     
     // throw new Error('Baba Ji')
-    console.log('ItemService: Removing Items ===> effect');
-    return from(storageService.remove(ENTITY, itemId))
+    console.log('EmailService: Removing Emails ===> effect');
+    return from(storageService.remove(ENTITY, emailId))
   }
 
-  save(item: Item): Observable<Item> {
-    const method = (item._id) ? 'put' : 'post'
-    const prmSavedItem = storageService[method](ENTITY, item)
-    console.log('ItemService: Saving Item ===> effect');
-    return from(prmSavedItem) as Observable<Item>
+  save(email: Email): Observable<Email> {
+    const method = (email._id) ? 'put' : 'post'
+    const prmSavedEmail = storageService[method](ENTITY, email)
+    console.log('EmailService: Saving Email ===> effect');
+    return from(prmSavedEmail) as Observable<Email>
   }
 
-  private createItems(): Item[] {
+  private createEmails(): Email[] {
     // return ['Vue', 'Angular', 'React', 'Redux', 'NGRX', 'Vuex']
     //   .map(txt => ({id: storageService.makeId(), txt}))
     return   [
@@ -109,7 +109,7 @@ export class ItemService {
       },
       {
           _id: 'e105',
-          subject: 'Take 15% off on top seller items, Bar',
+          subject: 'Take 15% off on top seller emails, Bar',
           body: 'Take 15% off Use the coupon code SHOPNOV22for a deal of your choice',
           isRead: false,
           isStar: false,
@@ -169,7 +169,7 @@ export class ItemService {
       },
       {
           _id: 'e110',
-          subject: 'Take 15% off on top seller items, Bar',
+          subject: 'Take 15% off on top seller emails, Bar',
           body: 'Take 15% off Use the coupon code SHOPNOV22for a deal of your choice',
           isRead: false,
           isStar: false,
@@ -181,7 +181,7 @@ export class ItemService {
       },
       {
           _id: 'e111',
-          subject: 'Take 15% off on top seller items, Bar',
+          subject: 'Take 15% off on top seller emails, Bar',
           body: 'Take 15% off Use the coupon code SHOPNOV22for a deal of your choice',
           isRead: false,
           isStar: false,
@@ -193,7 +193,7 @@ export class ItemService {
       },
       {
           _id: 'e112',
-          subject: 'Take 15% off on top seller items, Bar',
+          subject: 'Take 15% off on top seller emails, Bar',
           body: 'Take 15% off Use the coupon code SHOPNOV22for a deal of your choice',
           isRead: false,
           isStar: false,
@@ -205,7 +205,7 @@ export class ItemService {
       },
       {
           _id: 'e113',
-          subject: 'Take 15% off on top seller items, Bar',
+          subject: 'Take 15% off on top seller emails, Bar',
           body: 'Take 15% off Use the coupon code SHOPNOV22for a deal of your choice',
           isRead: false,
           isStar: false,
@@ -217,7 +217,7 @@ export class ItemService {
       },
       {
           _id: 'e114',
-          subject: 'Take 15% off on top seller items, Bar',
+          subject: 'Take 15% off on top seller emails, Bar',
           body: 'Take 15% off Use the coupon code SHOPNOV22for a deal of your choice',
           isRead: false,
           isStar: false,
@@ -229,7 +229,7 @@ export class ItemService {
       },
       {
           _id: 'e115',
-          subject: 'Take 15% off on top seller items, Bar',
+          subject: 'Take 15% off on top seller emails, Bar',
           body: 'Take 15% off Use the coupon code SHOPNOV22for a deal of your choice',
           isRead: false,
           isStar: false,
@@ -241,7 +241,7 @@ export class ItemService {
       },
       {
           _id: 'e116',
-          subject: 'Take 15% off on top seller items, Bar',
+          subject: 'Take 15% off on top seller emails, Bar',
           body: 'Take 15% off Use the coupon code SHOPNOV22for a deal of your choice',
           isRead: false,
           isStar: false,
@@ -253,7 +253,7 @@ export class ItemService {
       },
       {
           _id: 'e117',
-          subject: 'Take 15% off on top seller items, Bar',
+          subject: 'Take 15% off on top seller emails, Bar',
           body: 'Take 15% off Use the coupon code SHOPNOV22for a deal of your choice',
           isRead: false,
           isStar: false,
@@ -265,7 +265,7 @@ export class ItemService {
       },
       {
           _id: 'e118',
-          subject: 'Take 15% off on top seller items, Bar',
+          subject: 'Take 15% off on top seller emails, Bar',
           body: 'Take 15% off Use the coupon code SHOPNOV22for a deal of your choice',
           isRead: false,
           isStar: false,
@@ -277,7 +277,7 @@ export class ItemService {
       },
       {
           _id: 'e119',
-          subject: 'Take 15% off on top seller items, Bar',
+          subject: 'Take 15% off on top seller emails, Bar',
           body: 'Take 15% off Use the coupon code SHOPNOV22for a deal of your choice',
           isRead: false,
           isStar: false,
@@ -289,10 +289,10 @@ export class ItemService {
       },
   ]
   }
-  get emptyItem(): Item {
+  get emptyEmail(): Email {
     return {
       _id: 'e110',
-      subject: 'Take 15% off on top seller items, Bar',
+      subject: 'Take 15% off on top seller emails, Bar',
       body: 'Take 15% off Use the coupon code SHOPNOV22for a deal of your choice',
       isRead: false,
       isStar: false,

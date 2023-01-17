@@ -1,0 +1,26 @@
+<section class="card-grid">
+    <div class="email-header">
+        <input type="checkbox"/>
+        <mat-icon class="icon">rotate_right</mat-icon>
+        <mat-icon class="icon">more_vert</mat-icon>
+        <!-- <input type="checkbox"/> -->
+        <!-- <input type="checkbox"/> -->
+    </div>
+    <div class="email-preview">
+        <email-preview (click)="editEmail(email._id)" *ngFor="let email of emails$ | async" [email]="email">
+            <section class="actions">
+                <input type="checkbox"/>
+                <mat-icon (click)="$event.stopPropagation();toggleStar(email)" class="star-icon" ngClass="{{email.isStar? 'starred' : ''}}">{{email.isStar? 'star' : 'star_border'}}</mat-icon>
+                <!-- <button (click)="removeEmail(email._id)">x</button> -->
+                <!-- <button (click)="editEmail(email._id)">Edit</button> -->
+            </section>
+            <section edit class="quick-actions">
+                <mat-icon (click)="$event.stopPropagation();replyEmail(email._id)">reply</mat-icon>
+                <mat-icon (click)="$event.stopPropagation();archiveEmail(email)">archive</mat-icon>
+                <mat-icon (click)="$event.stopPropagation();deleteEmail(email._id)">delete</mat-icon>
+                <mat-icon (click)="$event.stopPropagation();toggleRead(email)">markunread</mat-icon>
+                <!-- <mat-icon (click)="toggleSnooze($event)">access_time</mat-icon> -->
+            </section>
+        </email-preview>
+    </div>
+</section>

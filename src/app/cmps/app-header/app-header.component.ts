@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SetFilter } from '../../store/actions/item.actions';
+import { SetFilter } from '../../store/actions/email.actions';
 import { pluck } from 'rxjs/operators';
 import { State } from '../../store/store';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';

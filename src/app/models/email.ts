@@ -1,6 +1,6 @@
 // TODO: Add Price
 
-export interface Item {
+export interface Email {
   // id: string;
   // txt: string;
   _id: string,
