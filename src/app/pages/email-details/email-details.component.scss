@@ -66,11 +66,11 @@
     .body{
         flex: 1;
         display: flex;
-        // flex-wrap: nowrap;
         pre{
             flex: 1;
             background-color: rgb(251, 251, 251);
             outline: none;
+            white-space: break-spaces;
         }
     }
 }

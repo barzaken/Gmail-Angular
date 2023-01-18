@@ -14,39 +14,61 @@
 @import "./basic/layout";
 @import "./basic/helpers";
 
-mat-icon{
+mat-icon {
     color: #444746;
     cursor: pointer;
     font-size: 20px !important;
     width: 20px !important;
     height: 20px !important;
 }
-// .mat-mdc-snack-bar-container .mdc-snackbar__surface{
-//     background-color: #282828 !important;
-//     color: white !important;
-// }
 
-// .mat-snack-bar-container{
-//     // background-color: #282828 !important;
-//     color: white !important;
-// }
-// .blue-snackbar {
-//     color: white !important;
-//     // display: none;
-//   }
-
-
-  .mat-mdc-snack-bar-container {
+.mat-mdc-snack-bar-container {
     --mat-mdc-snack-bar-button-color: white;
     --mdc-snackbar-container-color: #282828;
     --mdc-snackbar-supporting-text-color: white;
 }
 
-@media screen and (max-width:640px) {
-    .email-app-container{
-        side-bar{
+@media screen and (max-width: 640px) {
+    app-header {
+        .nav-container {
+            .logo {
+                max-width: 120px;
+            }
+            .user-area {
+                display: none !important;
+            }
+        }
+    }
+    .email-app-container {
+        side-bar {
             display: none;
+        }
+        email-preview {
+            .email-preview {
+                position: relative;
+                flex-direction: column;
+                height: 100px;
+                align-items: flex-start;
+                .email-info {
+                    flex-direction: column;
+                    align-items: start !important;
+                    h4 {
+                        max-width: 100% !important;
+                    }
+                }
+                .email-actions{
+                    input{
+                        display: none;
+                    }
+                    position: absolute;
+                    top: 20;
+                    right: 10px;
+                }
+                .sent-at,
+                .quick-action {
+                    display: none;
+                }
+            }
         }
     }
 }
-

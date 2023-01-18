@@ -31,8 +31,19 @@
         align-items: center;
         flex: 1;
         overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;   
+        max-width: 100%;
+        h4{
+            width: max-content;
+            max-width: 50%;
+        }
+        p{
+           max-width: 100%;
+        }
+        p,h4{
+            overflow: hidden;
+            white-space: nowrap;  
+            text-overflow: ellipsis;
+        } 
      }
      .quick-actions{
         display: none;
@@ -46,7 +57,6 @@
         margin-left: 15px;
     }
     &:hover{
-        // box-shadow: inset 2px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
         z-index: 10;
         box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
         .sent-at{
@@ -58,7 +68,3 @@
     }
 }
 
-hr {
-    color: whitesmoke;
-    width: 80%;
-}
