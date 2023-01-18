@@ -46,7 +46,7 @@ export class EmailListComponent implements OnInit {
     if(this.currFilter.category === 'draft') return this.emailsToShow.filter(email => email.isDraft)
     if(this.currFilter.category === 'sent') return this.emailsToShow.filter(email => email.from === 'me')
     if(this.currFilter.category === 'trash') return this.emailsToShow.filter(email => email.removedAt)
-    return this.emailsToShow.filter(email => !email.removedAt)
+    return this.emailsToShow.filter(email => !email.removedAt && !email.isDraft )
   }
 
   deleteEmail(email: Email) {
@@ -86,6 +86,8 @@ export class EmailListComponent implements OnInit {
     emailToSave.isRead = !emailToSave.isRead
     console.log(emailToSave.isRead);
     this.store.dispatch(new SaveEmail(emailToSave));
+    this.store.dispatch(new SetMsg(emailToSave.isRead ?'Marked as read' : 'Marked as unread'));
+
   }
 
   archiveEmail(email: Email){

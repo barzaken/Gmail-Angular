@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="search-bar">
-        <input (input)="setFilter()" [(ngModel)]="filterBy.txt" placeholder="Search in mail" type="search">
+        <input *ngIf="!isHome" (input)="setFilter()" [(ngModel)]="filterBy.txt" placeholder="Search in mail" type="search">
     </div>
     <div class="user-area">
         <mat-icon class="settings-icon">settings</mat-icon>

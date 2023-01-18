@@ -4,7 +4,7 @@
     <!-- <section *ngIf="isAdding$ | async|| (email$ | async)"> -->
     <section *ngIf="isAdding$ | async">
     <!-- <section *ngIf="addingNew"> -->
-        <email-edit (close)="toggleModal(false)" (saved)="addingNew=false"></email-edit>
+        <email-edit (close)="toggleModal(false)" (saved)="toggleModal(false)"></email-edit>
     </section>
     <user-msg></user-msg>
 </main>

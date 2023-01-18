@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { Email } from '../../models/email';
-import { SaveEmail } from '../../store/actions/email.actions';
+import { SaveEmail,SetMsg } from '../../store/actions/email.actions';
 import { State } from '../../store/store';
 
 @Component({
@@ -23,7 +23,7 @@ export class EmailEditComponent implements OnInit {
   }
 
   get emailEditState() {
-    return (this.email._id) ? 'Reply' : 'New'
+    return (this.email._id) ? 'Reply' : 'Send'
   }
 
   ngOnInit(): void {
@@ -38,10 +38,16 @@ export class EmailEditComponent implements OnInit {
     
   }
   saveEmail() {
+    const regex = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,'g')
+    if(!regex.test(this.email.to)){
+      this.store.dispatch(new SetMsg('Please enter valid Email'));
+      return
+    }
     this.email.sentAt = Date.now()
     this.email.from = 'me'
     this.email._id = ''
     this.store.dispatch(new SaveEmail(this.email));
+    this.store.dispatch(new SetMsg('Email sent'));
     this.saved.emit();
   }
 
