@@ -1,14 +1,14 @@
 <section class="email-edit">
     <div class="email-header">
         <span>{{emailEditState}} Email</span>
-        <button (click)="closeModal()">x</button>
+        <mat-icon (click)="closeModal()">close</mat-icon>
+        <!-- <button (click)="closeModal()">x</button> -->
     </div>
     <form (submit)="$event.preventDefault();saveEmail()">
         <div class="email-info">
             <input type="text" name="to" [(ngModel)]="email.to" placeholder="To" />
             <input type="text" name="subject" [(ngModel)]="email.subject" placeholder="Subject" />
         </div>
-        <hr/>
         <div class="email-body">
             <textarea name="body" [(ngModel)]="email.body"></textarea>
         </div>

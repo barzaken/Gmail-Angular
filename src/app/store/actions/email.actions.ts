@@ -14,8 +14,9 @@ export const REMOVED_EMAIL = '[email] removed';
 export const SAVE_EMAIL = '[email] saved';
 export const ADDED_EMAIL = '[email] added';
 export const UPDATED_EMAIL = '[email] updated';
+export const SET_MSG = '[msg] updated';
 
-export type EmailAction = LoadEmails | LoadEmail | RemoveEmail | SaveEmail | SetFilter | SetModal
+export type EmailAction = LoadEmails | LoadEmail | RemoveEmail | SaveEmail | SetFilter | SetModal | SetMsg
 
 export class LoadEmails implements Action {
   readonly type = LOAD_EMAILS;
@@ -28,6 +29,10 @@ export class SetFilter implements Action {
 export class SetModal implements Action {
   readonly type = SET_MODAL;
   constructor(public mode: boolean = false) {}
+}
+export class SetMsg implements Action {
+  readonly type = SET_MSG;
+  constructor(public msg: string = '') {}
 }
 export class LoadEmail implements Action {
   readonly type = LOAD_EMAIL;

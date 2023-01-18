@@ -1,4 +1,4 @@
-import { SET_LOADING, LOADED_EMAILS, REMOVED_EMAIL, ADDED_EMAIL, UPDATED_EMAIL, LOADED_EMAIL, SET_ERROR,SET_FILTER,SET_MODAL } from '../actions/email.actions';
+import { SET_LOADING, LOADED_EMAILS, REMOVED_EMAIL, ADDED_EMAIL, UPDATED_EMAIL, LOADED_EMAIL, SET_ERROR,SET_FILTER,SET_MODAL,SET_MSG } from '../actions/email.actions';
 import { Email } from 'src/app/models/email';
 import { createSelector } from '@ngrx/store';
 
@@ -8,6 +8,7 @@ export interface EmailState {
   isLoading: boolean;
   isAdding: boolean;
   error: string;
+  msg: string;
   filterBy: object;
 }
 
@@ -17,6 +18,7 @@ const initialState: EmailState = {
   isLoading: false,
   isAdding: false,
   error: '',
+  msg: '',
   filterBy:{txt:'',category:''}
 };
 
@@ -37,40 +39,45 @@ export function reducer(state: EmailState = initialState, action: any): EmailSta
       // console.log(`Reducer: Setting email error`, error);
       return { ...state, isAdding: mode};
     }
+    case SET_MSG: {
+      const { msg } = action;
+      // console.log(`Reducer: Setting email error`, error);
+      return { ...state, msg};
+    }
     case SET_FILTER: {
       const { filterBy } = action;
       console.log(`Reducer: Setting filter`, filterBy);
-      return { ...state, filterBy, isLoading: false };
+      return { ...state, filterBy, isLoading: false,msg:'' };
     }
     case LOADED_EMAILS: {
       const { emails } = action;
       console.log(`Reducer: Setting loaded emails (${emails.length}) emails`);
-      return { ...state, emails, isLoading: false, error: '' };
+      return { ...state, emails, isLoading: false, error: '',msg:'' };
     }
     case LOADED_EMAIL: {
       const { email } = action;
       console.log(`Reducer: Setting loaded email ${email._id}`);
-      return { ...state, email, error: '' };
+      return { ...state, email, error: '' ,msg:''};
     }
     case REMOVED_EMAIL: {
       const { emailId } = action;
       console.log('Reducer: Removing email:', emailId);
       const emails = state.emails.filter(email => email._id !== emailId)
-      return { ...state, emails, error: '' };
+      return { ...state, emails, error: '',msg:'' };
 
     }
     case ADDED_EMAIL: {
       const { email } = action;
       console.log('Reducer: Adding email:', email);
       const emails = [...state.emails, email]
-      return { ...state, emails, error: '' };
+      return { ...state, emails, error: '',msg:'' };
     }
     case UPDATED_EMAIL: {
       const { email } = action;
       console.log('Reducer: Updating email:', email);
       const emails = state.emails.map(currEmail => (currEmail._id === email._id) ? email : currEmail)
       // return { ...state, emails, email: null, error: '' };
-      return { ...state, emails, error: '' };
+      return { ...state, emails, error: '',msg:'' };
     }
     default:
       return state;

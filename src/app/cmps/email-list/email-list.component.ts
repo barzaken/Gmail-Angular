@@ -7,7 +7,7 @@ import { pluck } from 'rxjs/operators';
 import { State } from '../../store/store';
 import {Router} from '@angular/router';
 
-import {LoadEmail, RemoveEmail,SaveEmail,SetModal} from '../../store/actions/email.actions';
+import {LoadEmail, RemoveEmail,SaveEmail,SetModal,SetMsg} from '../../store/actions/email.actions';
 @Component({
   selector: 'email-list',
   templateUrl: './email-list.component.html',
@@ -40,7 +40,7 @@ export class EmailListComponent implements OnInit {
   filteredEmails(){
     if(this.currFilter.txt){
       let regex = new RegExp(this.currFilter.txt,'i')
-      return this.emailsToShow.filter(email => regex.test(email.subject) || regex.test(email.body) )
+      return this.emailsToShow.filter(email => regex.test(email.subject) || regex.test(email.body) || regex.test(email.from) )
     }
     if(this.currFilter.category === 'star') return this.emailsToShow.filter(email => email.isStar)
     if(this.currFilter.category === 'draft') return this.emailsToShow.filter(email => email.isDraft)
@@ -54,10 +54,13 @@ export class EmailListComponent implements OnInit {
     let emailToSave =  JSON.parse(JSON.stringify(email));
     if(emailToSave.removedAt){
           this.store.dispatch(new RemoveEmail(emailToSave._id));
+          this.store.dispatch(new SetMsg('Removed'));
           return
     }
     emailToSave.removedAt = Date.now()
     this.store.dispatch(new SaveEmail(emailToSave));
+    this.store.dispatch(new SetMsg('Moved to trash'));
+
   }
 
   replyEmail(emailId: string) {
@@ -89,6 +92,7 @@ export class EmailListComponent implements OnInit {
     let emailToSave =  JSON.parse(JSON.stringify(email));
     emailToSave.isDraft = !emailToSave.isDraft
     this.store.dispatch(new SaveEmail(emailToSave));
+    this.store.dispatch(new SetMsg('Moved to archive'));
   }
 
 }

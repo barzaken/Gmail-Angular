@@ -21,6 +21,26 @@ mat-icon{
     width: 20px !important;
     height: 20px !important;
 }
+// .mat-mdc-snack-bar-container .mdc-snackbar__surface{
+//     background-color: #282828 !important;
+//     color: white !important;
+// }
+
+// .mat-snack-bar-container{
+//     // background-color: #282828 !important;
+//     color: white !important;
+// }
+// .blue-snackbar {
+//     color: white !important;
+//     // display: none;
+//   }
+
+
+  .mat-mdc-snack-bar-container {
+    --mat-mdc-snack-bar-button-color: white;
+    --mdc-snackbar-container-color: #282828;
+    --mdc-snackbar-supporting-text-color: white;
+}
 
 @media screen and (max-width:640px) {
     .email-app-container{

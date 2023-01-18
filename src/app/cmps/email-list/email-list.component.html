@@ -1,14 +1,24 @@
 <section class="card-grid">
     <div class="email-header">
-        <input type="checkbox"/>
+        <input type="checkbox" />
         <mat-icon class="icon">rotate_right</mat-icon>
-        <mat-icon class="icon">more_vert</mat-icon>
+        <!-- <mat-icon [matMenuTriggerFor]="menu" class="icon">more_vert</mat-icon> -->
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon></mat-icon>
+              <span>Mark all as read</span>
+            </button>
+          </mat-menu>
     </div>
     <div class="email-preview">
         <email-preview (click)="editEmail(email._id)" *ngFor="let email of filteredEmails()" [email]="email">
             <section class="actions">
-                <input type="checkbox"/>
-                <mat-icon (click)="$event.stopPropagation();toggleStar(email)" class="star-icon" ngClass="{{email.isStar? 'starred' : ''}}">{{email.isStar? 'star' : 'star_border'}}</mat-icon>
+                <input type="checkbox" />
+                <mat-icon (click)="$event.stopPropagation();toggleStar(email)" class="star-icon"
+                    ngClass="{{email.isStar? 'starred' : ''}}">{{email.isStar? 'star' : 'star_border'}}</mat-icon>
             </section>
             <section edit class="quick-actions">
                 <mat-icon (click)="$event.stopPropagation();replyEmail(email._id)">reply</mat-icon>

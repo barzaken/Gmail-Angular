@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideBarComponent } from './cmps/side-bar/side-bar.component';
 // import { EmailDetailsComponent } from './cmps/email-details/email-details.component';
 import { EmailDetailsComponent } from './pages/email-details/email-details.component';
+import { UserMsgComponent } from './cmps/user-msg/user-msg.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { EmailDetailsComponent } from './pages/email-details/email-details.compo
     SideBarComponent,
     EmailDetailsComponent,
     EmailDetailsComponent,
+    UserMsgComponent,
     // EmailPreviewComponent,
   ],
   imports: [
