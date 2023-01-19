@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Output,Input,EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { SetFilter } from '../../store/actions/email.actions';
 import { State } from '../../store/store';
@@ -14,7 +14,12 @@ import { Location } from '@angular/common';
 export class AppHeaderComponent  {
   filterBy = { txt: '' }
   isHome = false
-  isMenuOpen: boolean = false 
+  // isMenuOpen: boolean = false 
+  @Input() isMenuOpen: boolean = false;
+  @Output() toggle = new EventEmitter<boolean>()
+  toggleMenu(){
+    this.toggle.emit()
+  }
   constructor(private store: Store<State>, public router: Router, public location: Location) {
     router.events.subscribe(val => {
       if (location.path() === "/home") {

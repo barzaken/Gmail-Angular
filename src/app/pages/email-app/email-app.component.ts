@@ -17,7 +17,7 @@ export class EmailAppComponent implements OnInit {
   addingNew = false;
   isAdding$:Observable<boolean>;
   filterBy$: Observable<object>;
-
+  isMenuOpen: boolean = false
   constructor(private store: Store<State> ,private router: Router) {
     this.email$ = this.store.select('emailState').pipe(pluck('email'));
     this.filterBy$ = this.store.select('emailState').pipe(pluck('filterBy'));

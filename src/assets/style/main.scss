@@ -44,18 +44,44 @@ mat-icon {
             }
         }
     }
-
     .email-app-container {
         grid-template-columns: 1fr !important;
         grid-template-rows: 60px 1fr !important;
         grid-template-areas: 'header' 'main' !important;
-        side-bar {
-            position: fixed !important;
-            height: 100%;
+
+        .toggle-menu-screen{
             display: none;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            background: rgba(42, 42, 42, 0.6);
+            z-index: 50;
         }
-        side-bar nav.open{
+        .toggle-menu-screen.open{
             display: block;
+        }
+        side-bar {
+            // position: absolute !important;
+            // height: 100%;
+            // display: none;
+            position: absolute !important;
+            top: 0;
+            left: -200%;
+            z-index: 300;
+            background: #292929;
+            height: 100vh;
+            transform: translate(100%, 0);
+        }
+        side-bar.open{
+            display: block;
+            z-index: 500;
+            left: -67%;
+            .side-bar{
+                width: 100%;
+                padding: 20% 15px;
+            }
         }
         email-list{
             z-index: 10;

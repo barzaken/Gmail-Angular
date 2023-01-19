@@ -1,6 +1,7 @@
 <main class="email-app-container">
-<app-header></app-header>
-<side-bar [filterBy]="filterBy$ | async" (filter)="setFilter($event)" (toggle)="toggleModal(true)"></side-bar>
+<app-header [isMenuOpen]="isMenuOpen" (toggle)="isMenuOpen = !isMenuOpen"></app-header>
+<side-bar [ngClass]="{'open':isMenuOpen}" [filterBy]="filterBy$ | async" (filter)="setFilter($event);isMenuOpen=!isMenuOpen" (toggle)="toggleModal(true)"></side-bar>
+<div [ngClass]="{'toggle-menu-screen':true,'open':isMenuOpen}" (click)="isMenuOpen = !isMenuOpen"></div>
     <router-outlet></router-outlet>
     <section *ngIf="isAdding$ | async">
         <email-edit (close)="toggleModal(false)" (saved)="toggleModal(false)"></email-edit>
