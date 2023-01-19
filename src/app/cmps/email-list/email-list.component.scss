@@ -41,7 +41,7 @@
     .email-header {
         display: flex;
         align-items: center;
-        padding: 10px;
+        padding: 14px;
         gap: 15px;
         .icon{
             font-size: 20px;
@@ -53,6 +53,9 @@
         display: flex;
         align-items: center;
         gap: 13px;
+        .drag-icon{
+            display: none;
+        }
         .star-icon{
             color: #bcbcbc;
             &.starred{
@@ -70,5 +73,12 @@
         display: flex;
         flex-direction: column;
         gap: 0px;
+        >:hover{
+            .drag-icon{
+                position: absolute;
+                left: 0;
+                display: block;
+            }
+        }
     }
 }

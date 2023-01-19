@@ -7,6 +7,7 @@ import { pluck, skip } from 'rxjs/operators';
 import { State } from '../../store/store';
 import {Router} from '@angular/router';
 import { NgForm } from '@angular/forms';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 import {LoadEmail, RemoveEmail,SaveEmail,SetModal,SetMsg} from '../../store/actions/email.actions';
 @Component({
@@ -43,6 +44,10 @@ export class EmailListComponent implements OnInit {
           form.value[key] = !form.value[key];
       });
     }
+}
+
+drop(event: CdkDragDrop<string[]>) {
+  moveItemInArray(this.emailsToShow, event.previousIndex, event.currentIndex);
 }
 
 markAll(form: NgForm){

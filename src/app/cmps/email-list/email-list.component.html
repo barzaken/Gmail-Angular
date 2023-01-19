@@ -17,9 +17,10 @@
       </button>
     </mat-menu>
   </div>
-  <div class="email-preview">
-    <email-preview (click)="editEmail(email._id)" *ngFor="let email of filteredEmails()" [email]="email" [isSelected]="form.value[email._id]">
+  <div cdkDropList class="email-preview" (cdkDropListDropped)="drop($event)">
+    <email-preview (click)="editEmail(email._id)" *ngFor="let email of filteredEmails()" cdkDrag [email]="email" [isSelected]="form.value[email._id]">
       <section class="actions">
+        <mat-icon class="drag-icon">drag_indicator</mat-icon>
         <input class="gmail-checkbox" (click)="$event.stopPropagation();" [(ngModel)]="form.value[email._id]" name="{{email._id}}"
           type="checkbox" />
         <mat-icon (click)="$event.stopPropagation();toggleStar(email)" class="star-icon"
