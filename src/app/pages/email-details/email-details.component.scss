@@ -3,6 +3,8 @@
     height: 100%;
     border-radius: 15px;
     overflow-x: hidden;
+    grid-area: main;
+
 }
 
 .email-details{
@@ -10,6 +12,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: white;
     & > * {
         padding: 10px;
     }

@@ -1,9 +1,8 @@
 <main class="email-app-container">
+<app-header></app-header>
 <side-bar [filterBy]="filterBy$ | async" (filter)="setFilter($event)" (toggle)="toggleModal(true)"></side-bar>
     <router-outlet></router-outlet>
-    <!-- <section *ngIf="isAdding$ | async|| (email$ | async)"> -->
     <section *ngIf="isAdding$ | async">
-    <!-- <section *ngIf="addingNew"> -->
         <email-edit (close)="toggleModal(false)" (saved)="toggleModal(false)"></email-edit>
     </section>
     <user-msg></user-msg>

@@ -10,7 +10,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-email-details',
+  selector: 'email-details',
   templateUrl: './email-details.component.html',
   styleUrls: ['./email-details.component.scss']
 })

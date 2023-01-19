@@ -2,10 +2,26 @@
   grid-area: main;
   overflow-y: hidden;
 }
+// .email-app-container {
+//   display: flex;
+//   height: 100%;
+// }
 .email-app-container {
-  display: flex;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 255px 1fr;
+  grid-template-areas: 'header header'
+                        'side main';
   height: 100%;
 }
+
+app-header{
+  grid-area: header;
+}
+side-bar{
+  grid-area: side;
+}
+
 
 .error-msg {
   background-color: rgb(245, 206, 214);

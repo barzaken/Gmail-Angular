@@ -11,11 +11,6 @@ html {
 
 app-root{
   height: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 60px 1fr;
-  grid-template-areas: 'header' 'main';
-  overflow-x: hidden;
 }
 
 body {

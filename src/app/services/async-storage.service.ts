@@ -12,7 +12,7 @@ interface Entity {
     _id?: string
 }
 
-async function query(entityType: string, delay = 0): Promise<Entity[]> {
+async function query(entityType: string, delay = 1000): Promise<Entity[]> {
     const entities = JSON.parse(localStorage.getItem(entityType) || 'null') || []
     if (delay) {
         return new Promise((resolve)=>setTimeout(resolve, delay, entities))

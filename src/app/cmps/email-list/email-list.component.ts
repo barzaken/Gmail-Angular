@@ -8,7 +8,6 @@ import { State } from '../../store/store';
 import {Router} from '@angular/router';
 import { NgForm } from '@angular/forms';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-
 import {LoadEmail, RemoveEmail,SaveEmail,SetModal,SetMsg} from '../../store/actions/email.actions';
 @Component({
   selector: 'email-list',
@@ -28,7 +27,6 @@ export class EmailListComponent implements OnInit {
   emailsToShow:Email[] = []
   currFilter:any = {}
 
-
   constructor(private store: Store<State>,private router: Router) {
     this.emails$ = this.store.select('emailState').pipe(pluck('emails'));
     this.filterBy$ = this.store.select('emailState').pipe(pluck('filterBy'));
@@ -47,8 +45,9 @@ export class EmailListComponent implements OnInit {
 }
 
 drop(event: CdkDragDrop<string[]>) {
-  moveItemInArray(this.emailsToShow, event.previousIndex, event.currentIndex);
+  moveItemInArray(this.emailsToShow, event.previousIndex, event.currentIndex)
 }
+
 
 markAll(form: NgForm){
   Object.keys(form.value).map((key, index) => {
@@ -92,7 +91,7 @@ getById(emailId: string){
   return this.emailsToShow.find(email => email._id === emailId)
 }
 
-  filteredEmails(){
+  filterEmails(){
     if(this.currFilter.txt){
       let regex = new RegExp(this.currFilter.txt,'i')
       return this.emailsToShow.filter(email => regex.test(email.subject) || regex.test(email.body) || regex.test(email.from) )

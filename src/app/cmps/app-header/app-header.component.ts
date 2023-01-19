@@ -14,7 +14,7 @@ import { Location } from '@angular/common';
 export class AppHeaderComponent  {
   filterBy = { txt: '' }
   isHome = false
-
+  isMenuOpen: boolean = false 
   constructor(private store: Store<State>, public router: Router, public location: Location) {
     router.events.subscribe(val => {
       if (location.path() === "/home") {
