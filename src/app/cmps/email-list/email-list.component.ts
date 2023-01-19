@@ -3,9 +3,10 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import {EventEmitter} from '@angular/core';
 import { Email } from 'src/app/models/email';
 import { Store } from '@ngrx/store';
-import { pluck } from 'rxjs/operators';
+import { pluck, skip } from 'rxjs/operators';
 import { State } from '../../store/store';
 import {Router} from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 import {LoadEmail, RemoveEmail,SaveEmail,SetModal,SetMsg} from '../../store/actions/email.actions';
 @Component({
@@ -26,16 +27,65 @@ export class EmailListComponent implements OnInit {
   emailsToShow:Email[] = []
   currFilter:any = {}
 
+
   constructor(private store: Store<State>,private router: Router) {
     this.emails$ = this.store.select('emailState').pipe(pluck('emails'));
     this.filterBy$ = this.store.select('emailState').pipe(pluck('filterBy'));
   }
 
-
   ngOnInit(): void {
     this.emails$.pipe().subscribe(emails => this.emailsToShow = JSON.parse(JSON.stringify(emails)) )
     this.filterBy$.pipe().subscribe(filter => this.currFilter = JSON.parse(JSON.stringify(filter)) )
   }
+  onSubmit(form: NgForm) {
+    if(form.value.all){
+      Object.keys(form.value).forEach((key, index) => {
+          form.value[key] = !form.value[key];
+      });
+    }
+}
+
+markAll(form: NgForm){
+  Object.keys(form.value).map((key, index) => {
+    let email
+    if(Object.values(form.value)[index]){
+      email = this.getById(key)
+      if(email) {
+         this.toggleRead(email)
+        form.value[key] = false
+      }
+    }
+});
+}
+
+
+deleteAll(form: NgForm){
+  Object.keys(form.value).map((key, index) => {
+    let email
+    if(Object.values(form.value)[index]){
+      email = this.getById(key)
+      if(email) {
+        this.deleteEmail(email)
+      }
+    }
+});
+}
+archiveAll(form: NgForm){
+  Object.keys(form.value).map((key, index) => {
+    let email
+    if(Object.values(form.value)[index]){
+      email = this.getById(key)
+      if(email) {
+        this.archiveEmail(email)
+      }
+    }
+});
+}
+
+
+getById(emailId: string){
+  return this.emailsToShow.find(email => email._id === emailId)
+}
 
   filteredEmails(){
     if(this.currFilter.txt){
@@ -81,13 +131,12 @@ export class EmailListComponent implements OnInit {
     this.store.dispatch(new SaveEmail(emailToSave));
   }
 
-  toggleRead(email: Email){
+   toggleRead(email: Email){
+    console.log('heeyy !!!',email);
     let emailToSave =  JSON.parse(JSON.stringify(email));
     emailToSave.isRead = !emailToSave.isRead
-    console.log(emailToSave.isRead);
     this.store.dispatch(new SaveEmail(emailToSave));
     this.store.dispatch(new SetMsg(emailToSave.isRead ?'Marked as read' : 'Marked as unread'));
-
   }
 
   archiveEmail(email: Email){

@@ -24,7 +24,7 @@
     }
     .email-actions {
         flex-basis: 5%;
-        max-width: 70px;
+        max-width: 50px;
     }
     .email-info {
         display: flex;
@@ -55,6 +55,9 @@
     p {
         margin: 0;
         margin-left: 15px;
+    }
+    .sent-at{
+        margin-left: 25px;
     }
     &:hover{
         z-index: 10;

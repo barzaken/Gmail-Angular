@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, catchError, switchMap, tap } from 'rxjs/operators';
+import { map, catchError, switchMap, tap,concatMap } from 'rxjs/operators';
 import { EmailService } from '../services/email.service';
 import { EmailAction, SAVE_EMAIL, ADDED_EMAIL, UPDATED_EMAIL, LOAD_EMAILS, LOADED_EMAILS, REMOVE_EMAIL, REMOVED_EMAIL, LOAD_EMAIL, LOADED_EMAIL, SET_ERROR } from './actions/email.actions';
 
@@ -58,7 +58,7 @@ export class AppEffects {
   removeEmail$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(REMOVE_EMAIL),
-      switchMap((action) =>
+      concatMap((action) =>
         this.emailService.remove(action.emailId).pipe(
           tap(() => console.log('Effects: Email removed by service ===> Reducer')),
           map(() => ({
@@ -79,7 +79,7 @@ export class AppEffects {
   saveEmail$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SAVE_EMAIL),
-      switchMap((action) =>
+      concatMap((action) =>
         this.emailService.save(action.email).pipe(
           tap(() => console.log('Effects: Email saved by service, inform the ===> Reducer')),
           map((savedEmail) => ({
@@ -93,7 +93,6 @@ export class AppEffects {
               error: error.toString(),
             })
           })
-
         )
       )
     );

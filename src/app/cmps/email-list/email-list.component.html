@@ -1,22 +1,30 @@
-<section class="card-grid">
+<!-- <section class="card-grid"> -->
+<form #form="ngForm" (change)="onSubmit(form)" class="card-grid">
     <div class="email-header">
-        <input type="checkbox" />
-        <mat-icon class="icon">rotate_right</mat-icon>
-        <!-- <mat-icon [matMenuTriggerFor]="menu" class="icon">more_vert</mat-icon> -->
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>more_vert</mat-icon>
-        </button>
+        <input [(ngModel)]="form.value.all" name="all" type="checkbox" />
+            <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-              <mat-icon></mat-icon>
+            <button (click)="markAll(form)" mat-menu-item>
+              <mat-icon>markunread</mat-icon>
               <span>Mark all as read</span>
+            </button>
+            <button (click)="deleteAll(form)" mat-menu-item>
+              <mat-icon>delete</mat-icon>
+              <span>Delete all</span>
+            </button>
+            <button (click)="archiveAll(form)" mat-menu-item>
+              <mat-icon>archive</mat-icon>
+              <span>Archive all</span>
             </button>
           </mat-menu>
     </div>
+    <!-- <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="email-preview"> -->
+    <!-- <form #form="ngForm" (change)="onSubmit(form)" class="email-preview"> -->
     <div class="email-preview">
         <email-preview (click)="editEmail(email._id)" *ngFor="let email of filteredEmails()" [email]="email">
             <section class="actions">
-                <input type="checkbox" />
+                <!-- <input (click)="$event.stopPropagation();" type="checkbox" /> -->
+                <input (click)="$event.stopPropagation();" [(ngModel)]="form.value[email._id]" name="{{email._id}}" type="checkbox" />
                 <mat-icon (click)="$event.stopPropagation();toggleStar(email)" class="star-icon"
                     ngClass="{{email.isStar? 'starred' : ''}}">{{email.isStar? 'star' : 'star_border'}}</mat-icon>
             </section>
@@ -28,4 +36,5 @@
             </section>
         </email-preview>
     </div>
-</section>
+    <!-- </form> -->
+</form>

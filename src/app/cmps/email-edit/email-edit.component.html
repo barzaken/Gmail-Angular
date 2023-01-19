@@ -1,8 +1,7 @@
 <section class="email-edit">
     <div class="email-header">
-        <span>{{emailEditState}} Email</span>
+        <span>{{email.subject.length ? email.subject : 'New Message' }}</span>
         <mat-icon (click)="closeModal()">close</mat-icon>
-        <!-- <button (click)="closeModal()">x</button> -->
     </div>
     <form (submit)="$event.preventDefault();saveEmail()">
         <div class="email-info">
