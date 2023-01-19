@@ -10,6 +10,34 @@
     flex-direction: column;
     gap: 2px;
     max-height: 99%;
+    .gmail-checkbox {
+        position: relative;
+        accent-color: #C2DBFF;
+      }
+      
+      .gmail-checkbox::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: rgb(173, 170, 170);
+        opacity: 0;
+        transform: scale(0);
+        border-radius: 50%;
+      } 
+      
+      .gmail-checkbox:hover::before {
+        transform: scale(3);
+        opacity: 0.1;
+        transition: transform opacity;
+        transition-duration: 0.3s;
+      }
+      
+      .gmail-checkbox::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        transform: scale(3);
+      }
     .email-header {
         display: flex;
         align-items: center;
@@ -26,7 +54,7 @@
         align-items: center;
         gap: 13px;
         .star-icon{
-            color: #DDDEDE;
+            color: #bcbcbc;
             &.starred{
                 color:#F5B400;
             }
@@ -41,6 +69,6 @@
         overflow-y: scroll;
         display: flex;
         flex-direction: column;
-        gap: 2px;
+        gap: 0px;
     }
 }

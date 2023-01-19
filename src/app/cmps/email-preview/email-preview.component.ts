@@ -9,6 +9,7 @@ import { EmailListComponent } from '../email-list/email-list.component';
 })
 export class EmailPreviewComponent implements OnInit {
   @Input() email: Email | null = null;
+  @Input() isSelected: boolean = false;
   constructor(private emailList: EmailListComponent) {
 
   }

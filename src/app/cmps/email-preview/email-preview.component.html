@@ -1,4 +1,5 @@
-<section class="email-preview" ngClass="{{email?.isRead ? 'opened' : ''}}">
+<!-- <section class="email-preview" ngClass="{{email?.isRead ? 'opened' : ''}}"> -->
+<section class="email-preview" [ngClass]="{'opened': email?.isRead, 'selected': isSelected }">
     <div class="email-actions">
         <ng-content></ng-content>
     </div>

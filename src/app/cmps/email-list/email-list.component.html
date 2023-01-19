@@ -1,40 +1,36 @@
-<!-- <section class="card-grid"> -->
 <form #form="ngForm" (change)="onSubmit(form)" class="card-grid">
-    <div class="email-header">
-        <input [(ngModel)]="form.value.all" name="all" type="checkbox" />
-            <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
-          <mat-menu #menu="matMenu">
-            <button (click)="markAll(form)" mat-menu-item>
-              <mat-icon>markunread</mat-icon>
-              <span>Mark all as read</span>
-            </button>
-            <button (click)="deleteAll(form)" mat-menu-item>
-              <mat-icon>delete</mat-icon>
-              <span>Delete all</span>
-            </button>
-            <button (click)="archiveAll(form)" mat-menu-item>
-              <mat-icon>archive</mat-icon>
-              <span>Archive all</span>
-            </button>
-          </mat-menu>
-    </div>
-    <!-- <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="email-preview"> -->
-    <!-- <form #form="ngForm" (change)="onSubmit(form)" class="email-preview"> -->
-    <div class="email-preview">
-        <email-preview (click)="editEmail(email._id)" *ngFor="let email of filteredEmails()" [email]="email">
-            <section class="actions">
-                <!-- <input (click)="$event.stopPropagation();" type="checkbox" /> -->
-                <input (click)="$event.stopPropagation();" [(ngModel)]="form.value[email._id]" name="{{email._id}}" type="checkbox" />
-                <mat-icon (click)="$event.stopPropagation();toggleStar(email)" class="star-icon"
-                    ngClass="{{email.isStar? 'starred' : ''}}">{{email.isStar? 'star' : 'star_border'}}</mat-icon>
-            </section>
-            <section edit class="quick-actions">
-                <mat-icon (click)="$event.stopPropagation();replyEmail(email._id)">reply</mat-icon>
-                <mat-icon (click)="$event.stopPropagation();archiveEmail(email)">archive</mat-icon>
-                <mat-icon (click)="$event.stopPropagation();deleteEmail(email)">delete</mat-icon>
-                <mat-icon (click)="$event.stopPropagation();toggleRead(email)">markunread</mat-icon>
-            </section>
-        </email-preview>
-    </div>
-    <!-- </form> -->
+  <div class="email-header">
+    <input class="gmail-checkbox" [(ngModel)]="form.value.all" name="all" type="checkbox" />
+    <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
+    <mat-menu #menu="matMenu">
+      <button (click)="markAll(form)" mat-menu-item>
+        <mat-icon>markunread</mat-icon>
+        <span>Mark all as read</span>
+      </button>
+      <button (click)="deleteAll(form)" mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Delete all</span>
+      </button>
+      <button (click)="archiveAll(form)" mat-menu-item>
+        <mat-icon>archive</mat-icon>
+        <span>Archive all</span>
+      </button>
+    </mat-menu>
+  </div>
+  <div class="email-preview">
+    <email-preview (click)="editEmail(email._id)" *ngFor="let email of filteredEmails()" [email]="email" [isSelected]="form.value[email._id]">
+      <section class="actions">
+        <input class="gmail-checkbox" (click)="$event.stopPropagation();" [(ngModel)]="form.value[email._id]" name="{{email._id}}"
+          type="checkbox" />
+        <mat-icon (click)="$event.stopPropagation();toggleStar(email)" class="star-icon"
+          ngClass="{{email.isStar? 'starred' : ''}}">{{email.isStar? 'star' : 'star_border'}}</mat-icon>
+      </section>
+      <section edit class="quick-actions">
+        <mat-icon title="Reply" (click)="$event.stopPropagation();replyEmail(email._id)">reply</mat-icon>
+        <mat-icon title="Archive" (click)="$event.stopPropagation();archiveEmail(email)">archive</mat-icon>
+        <mat-icon title="Delete" (click)="$event.stopPropagation();deleteEmail(email)">delete</mat-icon>
+        <mat-icon title="Mark unread" (click)="$event.stopPropagation();toggleRead(email)">markunread</mat-icon>
+      </section>
+    </email-preview>
+  </div>
 </form>

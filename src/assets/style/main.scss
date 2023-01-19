@@ -43,6 +43,16 @@ mat-icon {
         side-bar {
             display: none;
         }
+        email-edit {
+            .email-edit {
+                width: 90%;
+                height: 80%;
+                left: 0;
+                right: 0;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
         email-preview {
             .email-preview {
                 position: relative;
@@ -56,8 +66,8 @@ mat-icon {
                         max-width: 100% !important;
                     }
                 }
-                .email-actions{
-                    input{
+                .email-actions {
+                    input {
                         display: none;
                     }
                     position: absolute;

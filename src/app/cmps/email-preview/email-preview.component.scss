@@ -18,6 +18,9 @@
             font-weight: 300;
         }
     }
+    &.selected{
+        background-color: #C2DBFF;
+    }
     h3 {
         flex-basis: 30%;
         max-width: 250px;
