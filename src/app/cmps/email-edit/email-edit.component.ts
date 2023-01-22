@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { Email } from '../../models/email';
-import { SaveEmail,SetMsg } from '../../store/actions/email.actions';
+import { SaveEmail, SetMsg } from '../../store/actions/email.actions';
 import { State } from '../../store/store';
 
 @Component({
@@ -11,6 +11,7 @@ import { State } from '../../store/store';
   templateUrl: './email-edit.component.html',
   styleUrls: ['./email-edit.component.scss']
 })
+
 export class EmailEditComponent implements OnInit {
   email$: Observable<Email | null>;
   email = { _id: '', subject: '', body: '', isDraft: false, isRead: false, isStar: false, removedAt: null, sentAt: 0, from: '', to: '' }
@@ -28,18 +29,17 @@ export class EmailEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.email$.subscribe(email => {
-      if (email){
+      if (email) {
         this.email = JSON.parse(JSON.stringify(email))
-        this.email.subject = 'Reply: ' +  this.email.subject
+        this.email.subject = 'Reply: ' + this.email.subject
         this.email.to = this.email.from
-        // this.store.dispatch(new SaveEmail(this.email));
-      } 
+      }
     })
-    
   }
+
   saveEmail() {
-    const regex = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,'g')
-    if(!regex.test(this.email.to)){
+    const regex = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'g')
+    if (!regex.test(this.email.to)) {
       this.store.dispatch(new SetMsg('Please enter valid Email'));
       return
     }

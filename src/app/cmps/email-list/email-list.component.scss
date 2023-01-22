@@ -5,6 +5,7 @@
     flex: 1;
     grid-area: main;
     overflow-y: hidden;  
+    background-color: #f7f8fc;
 }
 .card-grid {
     display: flex;
@@ -45,6 +46,8 @@
         align-items: center;
         padding: 14px;
         gap: 15px;
+        background-color: white;
+        border-radius: 16px 0px;
         .icon{
             font-size: 20px;
             height: 20px;

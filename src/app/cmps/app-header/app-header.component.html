@@ -1,7 +1,7 @@
 <nav class="nav-container" [ngClass]="{'open' : isMenuOpen}">
     <button class="menu-btn" (click)="toggleMenu()">☰</button>
-    <div class="logo" (click)="this.router.navigate(['/'])">
-        <div class="logo-img">
+    <div class="logo">
+        <div (click)="this.router.navigate(['/'])" class="logo-img">
             <img src="../../../assets/img/icons8-gmail-48.png" alt="" />
             <span>Gmail</span>
         </div>

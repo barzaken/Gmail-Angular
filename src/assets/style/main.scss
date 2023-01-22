@@ -14,13 +14,25 @@
 @import "./basic/layout";
 @import "./basic/helpers";
 
-mat-icon {
+.mat-icon {
     color: #444746;
     cursor: pointer;
     font-size: 20px !important;
     width: 20px !important;
     height: 20px !important;
 }
+
+.mat-mdc-menu-content{
+    background-color: white !important;
+}
+.mat-mdc-menu-item{
+    & > *{
+        color: black !important;
+    }
+}
+
+
+
 
 .mat-mdc-snack-bar-container {
     --mat-mdc-snack-bar-button-color: white;
@@ -63,9 +75,6 @@ mat-icon {
             display: block;
         }
         side-bar {
-            // position: absolute !important;
-            // height: 100%;
-            // display: none;
             position: absolute !important;
             top: 0;
             left: -200%;
@@ -87,6 +96,11 @@ mat-icon {
             z-index: 10;
             .card-grid{
                 .email-header{
+                    display: none !important;
+                }
+            }
+            .actions{
+                .drag-icon{
                     display: none !important;
                 }
             }

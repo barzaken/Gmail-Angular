@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { State } from '../../store/store';
-import { LoadEmails, SetFilter,SetModal } from '../../store/actions/email.actions';
+import { LoadEmails, SetFilter, SetModal } from '../../store/actions/email.actions';
 import { Email } from '../../models/email';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'email-app',
@@ -13,22 +13,16 @@ import {Router} from '@angular/router';
   styleUrls: ['./email-app.component.scss'],
 })
 export class EmailAppComponent implements OnInit {
-  email$: Observable<Email | null>;
-  addingNew = false;
-  isAdding$:Observable<boolean>;
+  isAdding$: Observable<boolean>;
   filterBy$: Observable<object>;
   isMenuOpen: boolean = false
-  constructor(private store: Store<State> ,private router: Router) {
-    this.email$ = this.store.select('emailState').pipe(pluck('email'));
+
+  constructor(private store: Store<State>, private router: Router) {
     this.filterBy$ = this.store.select('emailState').pipe(pluck('filterBy'));
     this.isAdding$ = this.store.select('emailState').pipe(pluck('isAdding'));
   }
-  //   onOutletLoaded(component:any) {
-  //     console.log(component);
-  //     // component.emails = this.emails$
-  // } 
+
   ngOnInit(): void {
-    console.log('emailApp: dispatching LoadEmails => effects');
     this.store.dispatch(new LoadEmails(''));
   }
 
@@ -39,7 +33,7 @@ export class EmailAppComponent implements OnInit {
     this.router.navigate(['email']);
   }
 
-  toggleModal(mode: boolean){
+  toggleModal(mode: boolean) {
     this.store.dispatch(new SetModal(mode));
   }
 }

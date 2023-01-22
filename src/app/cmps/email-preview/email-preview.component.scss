@@ -23,7 +23,10 @@
     }
     h3 {
         flex-basis: 30%;
-        max-width: 250px;
+        max-width: 300px;
+        overflow: hidden;
+        white-space: nowrap;  
+        text-overflow: ellipsis;
     }
     .email-actions {
         flex-basis: 5%;
@@ -37,10 +40,16 @@
         max-width: 100%;
         h4{
             width: max-content;
+            min-width: 30%;
             max-width: 50%;
+            font-size: 14px;
+            font-weight: bolder;
         }
         p{
            max-width: 100%;
+           color: #5f6368;;
+           font-size: 14px;
+           font-weight: 400;
         }
         p,h4{
             overflow: hidden;

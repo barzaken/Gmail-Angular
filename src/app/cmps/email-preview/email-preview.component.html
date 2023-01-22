@@ -11,5 +11,5 @@
     <div class="quick-actions">
         <ng-content select="[edit]"></ng-content>
     </div>
-    <p class="sent-at">{{email?.sentAt  | date }}</p>
+    <p class="sent-at">{{email?.sentAt  | date:'LLL dd' }}</p>
 </section>

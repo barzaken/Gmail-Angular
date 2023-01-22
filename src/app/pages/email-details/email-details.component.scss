@@ -1,17 +1,16 @@
 :host{
     width: 100%;
     height: 100%;
-    border-radius: 15px;
     overflow-x: hidden;
     grid-area: main;
-
+    background-color: #f7f8fc;
 }
-
 .email-details{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    border-radius: 16px 0px;
     background-color: white;
     & > * {
         padding: 10px;
@@ -27,6 +26,9 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
+        .bold{
+            font-weight: 600;
+        }
         .subject{
             width: 100%;
             span{
@@ -40,15 +42,15 @@
             width: 100%;
             .avatar{
                 border-radius: 50%;
-                width: 32px;
+                width: 40px;
                 background-color: rgb(64, 134, 196);
                 span{
                   display: block;
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  width: 32px;
-                  height: 32px;
+                  width: 40px;
+                  height: 40px;
                   font-size: 18px;
                 }
               }

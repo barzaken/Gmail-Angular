@@ -8,7 +8,7 @@
     </div>
     <div class="info">
         <div class="subject">
-            <span>{{email.subject }}</span>
+            <span class="bold">{{email.subject }}</span>
         </div>
         <div class="sender">
             <div class="avatar">
@@ -17,9 +17,9 @@
             <div class="sender-info">
                 <div class="info-container">
                     <span>{{email.from}}</span>
-                    <span class="date">{{email.sentAt | date}}</span>
+                    <span class="date bold">{{email.sentAt | date:'LLL dd' }}</span>
                 </div>
-                <span>{{email.to}}</span>
+                <span><span class="bold">To me </span><{{email.to}}></span>
             </div>
         </div>
     </div>
