@@ -93,7 +93,7 @@ export class EmailListComponent implements OnInit {
       return this.emailsToShow.filter(email => regex.test(email.subject) || regex.test(email.body) || regex.test(email.from))
     }
     if (this.currFilter.category === 'star') return this.emailsToShow.filter(email => email.isStar)
-    if (this.currFilter.category === 'draft') return this.emailsToShow.filter(email => email.isDraft)
+    if (this.currFilter.category === 'draft') return this.emailsToShow.filter(email => email.isDraft && !email.removedAt)
     if (this.currFilter.category === 'sent') return this.emailsToShow.filter(email => email.from === 'me')
     if (this.currFilter.category === 'trash') return this.emailsToShow.filter(email => email.removedAt)
     return this.emailsToShow.filter(email => !email.removedAt && !email.isDraft)
